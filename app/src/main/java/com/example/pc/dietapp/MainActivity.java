@@ -13,27 +13,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity//
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Button mbtnPlusKg, mbtnExer;
 
-    //메인화면에서 메뉴버튼 누르면 메뉴 등장
+
+    //메인화면, 메뉴버튼 구성
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -43,8 +37,32 @@ public class MainActivity extends AppCompatActivity//
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //메인화면에서 버튼을 누르면 이동
+        mbtnPlusKg = (Button)findViewById(R.id.btnPlusKg);  //몸무게 기록하기
+        mbtnExer = (Button)findViewById(R.id.btnExer);      //운동하기
+
+        findViewById(R.id.btnPlusKg).setOnClickListener(btnPlusKgClick);
+        findViewById(R.id.btnExer).setOnClickListener(btnExerClick);
     }
 
+    private View.OnClickListener btnPlusKgClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener btnExerClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    //메뉴 등장
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -55,44 +73,24 @@ public class MainActivity extends AppCompatActivity//
         }
     }
 
-    //상단 우측 클릭하면 나오는 Settings 속성 주석처리
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
+    //메뉴에서 항목들 클릭했을 때의 페이지 이동
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.mypage) {
+        if (id == R.id.mypage) {               //마이페이지
             Intent i = new Intent(MainActivity.this, MemUpActivity.class);
             startActivity(i);
             // Handle the camera action
-        } else if (id == R.id.present_kg) {
-
-        } else if (id == R.id.exer_list) {
-
-        } else if (id == R.id.logout) {
+        } else if (id == R.id.present_kg) {  //몸무게 현황
+            Intent i = new Intent(MainActivity.this, MemUpActivity.class);
+            startActivity(i);
+        } else if (id == R.id.exer_list) {  //운동 리스트
+            Intent i = new Intent(MainActivity.this, MemUpActivity.class);
+            startActivity(i);
+        } else if (id == R.id.logout) {     //로그아웃
 
 
 
