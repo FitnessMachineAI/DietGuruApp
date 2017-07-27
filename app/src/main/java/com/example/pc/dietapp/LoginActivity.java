@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
         findViewById(R.id.btnJoin).setOnClickListener(btnJoinClick);
         findViewById(R.id.btnLogin).setOnClickListener(btnLoginClick);
-    }
+    }//
 
     private View.OnClickListener btnJoinClick = new View.OnClickListener() {
         @Override
