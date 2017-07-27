@@ -3,16 +3,16 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/mypage"
             android:title="마이페이지" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/present_kg"
             android:title="몸무게 현황" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/exer_list"
             android:title="운동 리스트" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/logout"
             android:title="로그아웃" />
     </group>
 

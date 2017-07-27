@@ -113,8 +113,8 @@ public class LoginActivity extends AppCompatActivity {
                 if(bean!=null){
                     if(bean.getResult().equals("ok")) {
                         //로그인성공
-                        Intent i = new Intent(LoginActivity.this, JoinActivity.class);
-                        i.putExtra("joinBean", bean.getJoinBean());
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+
                         startActivity(i);
                     }else {
                         //로그인실패
