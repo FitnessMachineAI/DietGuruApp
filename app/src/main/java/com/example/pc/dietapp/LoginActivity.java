@@ -24,7 +24,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 
-//자동로그인 구현해야함!
+//자동로그인 구현
 
 public class LoginActivity extends AppCompatActivity {
 

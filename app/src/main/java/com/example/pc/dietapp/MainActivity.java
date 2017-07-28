@@ -1,5 +1,7 @@
 package com.example.pc.dietapp;
 
+//마이페이지 눌렀을 때 정보안넘어가는 거 수정필요
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.NavigationView;
