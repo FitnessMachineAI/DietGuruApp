@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity//
             startActivity(i);
             // Handle the camera action
         } else if (id == R.id.present_kg) {  //몸무게 현황
-            Intent i = new Intent(MainActivity.this, MemUpActivity.class);
+            Intent i = new Intent(MainActivity.this, MyWeightActivity.class);
             startActivity(i);
         } else if (id == R.id.exer_list) {  //운동 리스트
             Intent i = new Intent(MainActivity.this, MemUpActivity.class);
