@@ -5,9 +5,11 @@
       <module fileurl="file://$PROJECT_DIR$/DietApp.iml" filepath="$PROJECT_DIR$/DietApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/DietGuru.iml" filepath="$PROJECT_DIR$/DietGuru.iml" />
       <module fileurl="file://$PROJECT_DIR$/DietGuruApp.iml" filepath="$PROJECT_DIR$/DietGuruApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DietGuruApp12.iml" filepath="$PROJECT_DIR$/DietGuruApp12.iml" />
       <module fileurl="file://$PROJECT_DIR$/DietGuruApp2.iml" filepath="$PROJECT_DIR$/DietGuruApp2.iml" />
       <module fileurl="file://$PROJECT_DIR$/DietGuruApp3.iml" filepath="$PROJECT_DIR$/DietGuruApp3.iml" />
       <module fileurl="file://$PROJECT_DIR$/DietGuruApp4.iml" filepath="$PROJECT_DIR$/DietGuruApp4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
