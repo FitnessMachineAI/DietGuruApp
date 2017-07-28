@@ -1,59 +1,32 @@
 package com.example.pc.dietapp;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.os.AsyncTask;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity//
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Button mbtnPlusKg, mbtnExer;
+    private TextView mPresentWeight, mGoalWeight;
 
-
-    //메인화면, 메뉴버튼 구성
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        //메인화면에서 버튼을 누르면 이동
-        mbtnPlusKg = (Button)findViewById(R.id.btnPlusKg);  //몸무게 기록하기
-        mbtnExer = (Button)findViewById(R.id.btnExer);      //운동하기
-
-        findViewById(R.id.btnPlusKg).setOnClickListener(btnPlusKgClick);
-        findViewById(R.id.btnExer).setOnClickListener(btnExerClick);
-    }
-
+    //오늘의 몸무게 입력 + 버튼을 눌렀을 때 몸무게 현황으로 이동
     private View.OnClickListener btnPlusKgClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MyWeightActivity.class);
             startActivity(intent);
         }
     };
 
+    //운동하기 눌렀을 때 운동 리스트로 이동
     private View.OnClickListener btnExerClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -61,6 +34,16 @@ public class MainActivity extends AppCompatActivity//
             startActivity(intent);
         }
     };
+
+    //현재 몸무게
+    public class PresentWeightTask extends AsyncTask<String, Void, String> {
+
+
+        @Override
+        protected String doInBackground(String... params) {
+            return null;
+        }
+    }
 
     //메뉴 등장
     @Override
@@ -92,14 +75,24 @@ public class MainActivity extends AppCompatActivity//
             startActivity(i);
         } else if (id == R.id.logout) {     //로그아웃
 
-
+//            String s = new String();
+//            Gson gson = new Gson();
+//            JoinBean bean = gson.fromJson(s, JoinBean.class);
 
             Intent i = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(i);
+            finishAffinity();
+          //  ActivityCompat.finishAffinity(MainActivity.this);
+          //  finish();
+//            if (!bean.getResult().equals("ok"))
+//                Toast.makeText(MainActivity.this, "정상적으로 로그아웃되었습니다.", Toast.LENGTH_LONG).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 }
