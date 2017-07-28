@@ -1,5 +1,6 @@
 package com.example.pc.dietapp;
 
+//sj
 //그래프 참고 사이트 http://namgh.blogspot.kr/2016/05/mpandroidchart-1.html
 
 //1 날짜는 어떻게 받아와야하지?

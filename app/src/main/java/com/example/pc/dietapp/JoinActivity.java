@@ -1,5 +1,8 @@
 package com.example.pc.dietapp;
 
+//sj
+//공백으로 회원가입 불가능하게 체크해야함
+
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.AsyncTask;

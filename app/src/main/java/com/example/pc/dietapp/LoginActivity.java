@@ -1,7 +1,7 @@
 package com.example.pc.dietapp;
 
+//sj
 //http://www.techobbyist.com/2017/02/15/working-with-shared-preferences-in-android-remember-username-and-password-functionality/
-//        자동로그인 구현
 //스플래쉬화면에서 자동로그인을 체크해서 자동로그인이 구현되어 있는 경우 바로 main으로 넘어가게!
 
 import android.app.Activity;
