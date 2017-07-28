@@ -31,5 +31,6 @@ dependencies {
     compile 'com.stanfy:gson-xml-java:0.1.+'
     compile 'org.springframework.android:spring-android-rest-template:2.0.0.M3'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:25.3.1'
     compile files('libs/mpandroidchartlibrary-2-2-4.jar')
 }
