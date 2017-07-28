@@ -73,7 +73,7 @@ public class JoinActivity extends AppCompatActivity {
                 MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
                 //map.add(" " <- 이부분은 memberBean의 이름과 같게 해주어야함!!!!! 꼭!!!!!!!
                 map.add("userId", userId);
-//                map.add("userPw", userPw);
+
 
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.ALL.APPLICATION_FORM_URLENCODED);
@@ -93,9 +93,9 @@ public class JoinActivity extends AppCompatActivity {
             try{
                 JoinBean bean = gson.fromJson(s, JoinBean.class);
                 if(bean!=null){
-                    if(bean.getResult().equals("ok")){
-                        Intent i = new Intent(JoinActivity.this, LoginActivity.class);
-                        startActivity(i);
+                    if(bean.getResultMsg().equals("이미 존재하는 USER_ID 입니다.")){
+                        Toast.makeText(JoinActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
+
                     }else {
                         Toast.makeText(JoinActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
                     }
