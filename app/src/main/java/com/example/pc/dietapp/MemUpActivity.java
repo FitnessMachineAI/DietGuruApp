@@ -32,6 +32,8 @@ public class MemUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mem_up);
 
+        JoinBean.JoinBeanSub joinBean = (JoinBean.JoinBeanSub)getIntent().getSerializableExtra("joinBean");
+
         mEdtUpId = (EditText)findViewById(R.id.edtUpId);
         mEdtUpPw = (EditText)findViewById(R.id.edtUpPw);
         mEdtUpCm = (EditText)findViewById(R.id.edtUpCm);
@@ -40,6 +42,13 @@ public class MemUpActivity extends AppCompatActivity {
         mEdtUpWord = (EditText)findViewById(R.id.edtUpWord);
 
         mProgressBar = (ProgressBar)findViewById(R.id.progressBar);
+
+        mEdtUpId.setText(joinBean.getUserId());
+        mEdtUpPw.setText(joinBean.getUserPw());
+        mEdtUpCm.setText(joinBean.getCm());
+        mEdtUpKg.setText(joinBean.getKg());
+        mEdtUpHkg.setText(joinBean.getH_kg());
+        mEdtUpWord.setText(joinBean.getWord());
 
         findViewById(R.id.btnUpOk).setOnClickListener(btnUpClick);
     }//end OnCreate

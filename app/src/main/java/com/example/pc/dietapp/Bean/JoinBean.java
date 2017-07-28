@@ -12,7 +12,7 @@ public class JoinBean extends CommonBean implements Serializable{
     private JoinBeanSub joinBean;
     private List<JoinBeanSub> joinList;
 
-    class JoinBeanSub implements Serializable{
+    public class JoinBeanSub implements Serializable{
         private String userId;
         private String userPw;
         private String cm;
