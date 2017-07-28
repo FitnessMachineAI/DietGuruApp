@@ -26,6 +26,8 @@
 
         </activity>
         <activity android:name=".MyWeightActivity"></activity>
+        <activity android:name=".TabActivity"></activity>
+
     </application>
 
 </manifest>

@@ -34,8 +34,6 @@ public class MemUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mem_up);
 
-        JoinBean.JoinBeanSub joinBean = (JoinBean.JoinBeanSub)getIntent().getSerializableExtra("joinBean");
-
         mEdtUpId = (EditText)findViewById(R.id.edtUpId);
         mEdtUpPw = (EditText)findViewById(R.id.edtUpPw);
         mEdtUpCm = (EditText)findViewById(R.id.edtUpCm);
@@ -45,14 +43,8 @@ public class MemUpActivity extends AppCompatActivity {
 
         mProgressBar = (ProgressBar)findViewById(R.id.progressBar);
 
-        mEdtUpId.setText(joinBean.getUserId());
-        mEdtUpPw.setText(joinBean.getUserPw());
-        mEdtUpCm.setText(joinBean.getCm());
-        mEdtUpKg.setText(joinBean.getKg());
-        mEdtUpHkg.setText(joinBean.getH_kg());
-        mEdtUpWord.setText(joinBean.getWord());
-
         findViewById(R.id.btnUpOk).setOnClickListener(btnUpClick);
+        findViewById(R.id.btnByeOK).setOnClickListener(btnByeClick);
     }//end OnCreate
 
 
@@ -68,7 +60,7 @@ public class MemUpActivity extends AppCompatActivity {
                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            new UpTask().execute();
+                            new UpTask().execute(Constants.BASE_URL+"rest/updateMember.do");
                         }
                     }) //확인버튼 클릭시 이벤트
                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -82,10 +74,35 @@ public class MemUpActivity extends AppCompatActivity {
         }
     };  //end btnUpClick
 
+    private View.OnClickListener btnByeClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MemUpActivity.this);
+
+            builder.setTitle("회원탈퇴확인")
+                    .setMessage("정말로 탈퇴하시겠습니까?")
+                    .setCancelable(false)
+                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            new UpTask().execute(Constants.BASE_URL + "rest/deleteMember.do");
+                        }
+                    }) //확인버튼 클릭시 이벤트
+                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    }); //취소버튼 클릭시 설정
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+    };  //end btnByeClick
 
 
+
+    //회원관리를 위한 task -> 회원정보수정/탈퇴
     private class UpTask extends AsyncTask<String, Void, String> {
-        public static final String URL_UP_PROC= Constants.BASE_URL+"rest/updateMember.do";
         private String userId, userPw, userCm, userKg, userHkg, userWord;
 
         @Override
@@ -121,7 +138,7 @@ public class MemUpActivity extends AppCompatActivity {
                 headers.setContentType(MediaType.ALL.APPLICATION_FORM_URLENCODED);
                 HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(map, headers);
 
-                return restTemplate.postForObject(URL_UP_PROC, request, String.class);
+                return restTemplate.postForObject(params[0], request, String.class);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -146,8 +163,7 @@ public class MemUpActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }//end onPostExecute
-
-    }//end Task
+    }//end UpTask
 
 
 }

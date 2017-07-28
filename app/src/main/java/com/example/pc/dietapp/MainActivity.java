@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(i);
 
         } else if (id == R.id.exer_list) {  //운동 리스트
-            Intent i = new Intent(MainActivity.this, MemUpActivity.class);
+            Intent i = new Intent(MainActivity.this, TabActivity.class);
             startActivity(i);
 
         } else if (id == R.id.logout) {     //로그아웃
