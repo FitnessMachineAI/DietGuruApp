@@ -49,9 +49,65 @@ public class JoinActivity extends AppCompatActivity {
     private View.OnClickListener btnIdOkClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            new IdCheckTask().execute();
 
         }
     };  //end btnIdOkClick
+
+    private class IdCheckTask extends AsyncTask<String, Void, String>{
+
+        public static final String URL_JOIN_PROC= Constants.BASE_URL+"rest/idCheckMember.do";
+        private String userId;
+
+        @Override
+        protected void onPreExecute() {
+            userId = mEdtJoinId.getText().toString();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try{
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
+
+                MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+                //map.add(" " <- 이부분은 memberBean의 이름과 같게 해주어야함!!!!! 꼭!!!!!!!
+                map.add("userId", userId);
+//                map.add("userPw", userPw);
+
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.ALL.APPLICATION_FORM_URLENCODED);
+                HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(map, headers);
+
+                return restTemplate.postForObject(URL_JOIN_PROC, request, String.class);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            mProgressBar.setVisibility(View.INVISIBLE);
+            Gson gson = new Gson();
+            try{
+                JoinBean bean = gson.fromJson(s, JoinBean.class);
+                if(bean!=null){
+                    if(bean.getResult().equals("ok")){
+                        Intent i = new Intent(JoinActivity.this, LoginActivity.class);
+                        startActivity(i);
+                    }else {
+                        Toast.makeText(JoinActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }catch (Exception e){
+                Toast.makeText(JoinActivity.this, "파싱실패", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }//
+    }
+    /////여기까지 중복체크하는 버튼
+
 
     private View.OnClickListener btnJoinOkClick = new View.OnClickListener() {
         @Override
