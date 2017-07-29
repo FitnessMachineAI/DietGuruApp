@@ -24,9 +24,34 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Button mbtnPlusKg, mbtnExer;
-    private TextView mPresentWeight, mGoalWeight, mtxtToday;
+    private TextView mPresentWeight, mGoalWeight, mtxtToday, mtxtName, mtxtId;
 
+    //메인화면 등장
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+      //  setContentView(R.layout.nav_header_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        mbtnPlusKg = (Button)findViewById(R.id.btnPlusKg);
+        mbtnExer = (Button)findViewById(R.id.btnExer);
+        mtxtName = (TextView)findViewById(R.id.txtName);
+        mtxtId = (TextView)findViewById(R.id.txtId);
+
+        findViewById(R.id.btnPlusKg).setOnClickListener(btnPlusKgClick);
+        findViewById(R.id.btnExer).setOnClickListener(btnExerClick);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
 
     //오늘의 몸무게 입력 + 버튼을 눌렀을 때 몸무게 현황으로 이동
     private View.OnClickListener btnPlusKgClick = new View.OnClickListener() {
@@ -56,29 +81,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        mbtnPlusKg = (Button)findViewById(R.id.btnPlusKg);
-        mbtnExer = (Button)findViewById(R.id.btnExer);
-
-        findViewById(R.id.btnPlusKg).setOnClickListener(btnPlusKgClick);
-        findViewById(R.id.btnExer).setOnClickListener(btnExerClick);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
-
     //메뉴 등장
     @Override
     public void onBackPressed() {
@@ -102,8 +104,8 @@ public class MainActivity extends AppCompatActivity
         JoinBean bean = gson.fromJson(s, JoinBean.class);
 
         if (id == R.id.mypage) {               //마이페이지
-            Intent i = new Intent(MainActivity.this, MemUpActivity.class);
-            i.putExtra("joinBean", bean.getJoinBean());            //데이터 연동
+            Intent i = new Intent(MainActivity.this, MemInfoActivity.class);
+    //111        i.putExtra("joinBean", bean.getJoinBean());            //데이터 연동
             startActivity(i);
 
         } else if (id == R.id.present_kg) {  //몸무게 현황

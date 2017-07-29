@@ -22,9 +22,9 @@
         <activity android:name=".MemUpActivity">
 
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MyWeightActivity" />
+        <activity android:name=".MemInfoActivity"></activity>
         <activity android:name=".MyWeightActivity"></activity>
         <activity android:name=".TabActivity"></activity>
 
