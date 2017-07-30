@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
     private View.OnClickListener btnExerClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, JoinActivity.class);
+            Intent intent = new Intent(MainActivity.this, TabActivity.class);
             startActivity(intent);
         }
     };
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.mypage) {               //마이페이지
             Intent i = new Intent(MainActivity.this, MemInfoActivity.class);
-    //111        i.putExtra("joinBean", bean.getJoinBean());            //데이터 연동
+    //        i.putExtra("joinBean", bean.getJoinBean());            //데이터 연동
             startActivity(i);
 
         } else if (id == R.id.present_kg) {  //몸무게 현황

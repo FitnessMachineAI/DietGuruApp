@@ -6,7 +6,9 @@ package com.example.pc.dietapp.Util;
 
 public class Constants {
 
-    public static final String BASE_URL = "http://192.168.1.17:8484";
+//    public static final String BASE_URL = "http://192.168.1.17:8484"; //집에서 할때 IP 바꿔서 하기
+    public static final String BASE_URL = "http://117.17.93.202:8484";
+
 
     //인텐트키 정의///
     /** 회원정보 리스트를 관리하는 intent key **/

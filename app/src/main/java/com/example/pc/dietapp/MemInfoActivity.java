@@ -1,6 +1,7 @@
 package com.example.pc.dietapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,7 +32,7 @@ public class MemInfoActivity extends AppCompatActivity {
     private TextView mtxtInfoId, mtxtInfoCm, mtxtInfoKg, mtxtInfoHkg, mtxtInfoWord;
     private ProgressBar mProgressBar;
     private Button mBtnUp;
-    private MemAdapter memAdapter;
+  //  private MemAdapter memAdapter;
     private ListView mView;
 
     @Override
@@ -39,10 +40,10 @@ public class MemInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mem_info);
 
-       // JoinBean.JoinBeanSub joinBean = (JoinBean.JoinBeanSub)getIntent().getSerializableExtra("joinBean");
+        JoinBean.JoinBeanSub joinBean = (JoinBean.JoinBeanSub)getIntent().getSerializableExtra("joinBean");
 
 //        mtxtInfoId = (TextView)findViewById(R.id.txtInfoId);
-//        mtxtInfoCm = (TextView)findViewById(R.id.txtInfoCm);
+//        mtxtInfoCm = (TextView) findViewById(R.id.txtInfoCm);
 //        mtxtInfoKg = (TextView)findViewById(R.id.txtInfoKg);
 //        mtxtInfoHkg = (TextView)findViewById(R.id.txtInfoHKg);
 //        mtxtInfoWord = (TextView)findViewById(R.id.txtInfoWord);
@@ -50,10 +51,21 @@ public class MemInfoActivity extends AppCompatActivity {
 //        mProgressBar = (ProgressBar)findViewById(R.id.progressBar);
 
 //       txtInfoWord.setText(joinBean.getWord());
-  //      new MemAdapter.MemberTask.execute(C);
+
+//        mtxtInfoCm.setText(joinBean.getCm());
+
+        findViewById(R.id.btnEdt).setOnClickListener(btnEdtClick);
     }
 
-    public class MemAdapter extends BaseAdapter{
+    private View.OnClickListener btnEdtClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MemInfoActivity.this, MemUpActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    public class MemAdapter extends BaseAdapter {
 
         private Context context;
         private JoinBean joinBean;
@@ -110,7 +122,10 @@ public class MemInfoActivity extends AppCompatActivity {
     //회원정보를 가져오는 Task
     class MemberTask extends AsyncTask<String, Void, String> {
 
-        private String URL_MEMBER = Constants.BASE_URL + "/rest/selectMember.do";
+        JoinBean.JoinBeanSub joinBean = (JoinBean.JoinBeanSub)getIntent().getSerializableExtra("joinBean");
+
+
+        private String URL_MEMBER = Constants.BASE_URL + "/rest/selectMember.do?ueserId=" + joinBean.getUserId();
 
         @Override
         protected String doInBackground(String... params) {
@@ -142,13 +157,13 @@ public class MemInfoActivity extends AppCompatActivity {
                     if (bean.getResult().equals("ok")) {
                         JoinBean.JoinBeanSub joinBean = (JoinBean.JoinBeanSub)getIntent().getSerializableExtra("joinBean");
                         //리스트뷰 갱신
-                        MemAdapter.this.notifyDataSetInvalidated();
+                       // MemAdapter.this.notifyDataSetInvalidated();
                     } else {
-                        Toast.makeText(context, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MemInfoActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
                     }
                 }
             } catch (Exception e) {
-                Toast.makeText(context, "파싱실패", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MemInfoActivity.this, "파싱실패", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }
