@@ -10,18 +10,17 @@ package com.example.pc.dietapp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.menu.ActionMenuItemView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.pc.dietapp.Adapter.WeightAdapter;
-import com.example.pc.dietapp.Bean.JoinBean;
+import com.example.pc.dietapp.Adapter.DateAdapter;
+import com.example.pc.dietapp.Adapter.KgAdapter;
+import com.example.pc.dietapp.Bean.DateBean;
 import com.example.pc.dietapp.Bean.KgBean;
 import com.example.pc.dietapp.Bean.WeightBean;
 import com.example.pc.dietapp.Util.Constants;
@@ -34,7 +33,6 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -44,20 +42,21 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MyWeightActivity extends AppCompatActivity {
 
     private EditText mEdtTodayWeight;
-    private ProgressBar mProgressBar;
+    public ProgressBar mProgressBar;
     private LineChart mChart;
     private String mDate, mD_kg;
+    private List<KgBean.KgBeanSub> kgList = new ArrayList<KgBean.KgBeanSub>();
+    private List<DateBean.DateBeanSub> dateList = new ArrayList<DateBean.DateBeanSub>();
+    private KgAdapter kgAdapter;
+    private DateAdapter dateAdapter;
 
 
     @Override
@@ -73,13 +72,23 @@ public class MyWeightActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 new WeightProc().execute(Constants.BASE_URL + "/rest/insertBoard.do");
-
             }
         });
         findViewById(R.id.btnDeleteWeight).setOnClickListener(btnDeleteClick);
 
-        showChart();
-        new GraphKgTask().execute(Constants.BASE_URL+"/rest/seleceBoardList.do");
+        kgAdapter = new KgAdapter(this);
+        dateAdapter = new DateAdapter(this);
+
+        new GraphKgTask().execute(Constants.BASE_URL+"/rest/selectBoardList.do");
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        new GraphKgTask().execute(Constants.BASE_URL+"/rest/selectBoardList.do");
+
     }
 
     private View.OnClickListener btnDeleteClick = new View.OnClickListener() {
@@ -111,6 +120,8 @@ public class MyWeightActivity extends AppCompatActivity {
     //오늘의 몸무게관리 클래스
     private class WeightProc extends AsyncTask<String, Void, String> {
 
+        private List<WeightBean.WeightBeanSub> weightList;
+
         @Override
         protected void onPreExecute() {
             mProgressBar.setVisibility(View.VISIBLE);
@@ -130,7 +141,6 @@ public class MyWeightActivity extends AppCompatActivity {
                 restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
 
                 MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-                //map.add(" " <- 이부분은 memberBean의 이름과 같게 해주어야함!!!!! 꼭!!!!!!!
                 map.add("date", mDate);
                 map.add("d_kg", mD_kg);
 
@@ -150,9 +160,10 @@ public class MyWeightActivity extends AppCompatActivity {
             mProgressBar.setVisibility(View.INVISIBLE);
             Gson gson = new Gson();
             try {
-                JoinBean bean = gson.fromJson(s, JoinBean.class);
+                WeightBean bean = gson.fromJson(s, WeightBean.class);
                 if (bean != null) {
                     if (bean.getResult().equals("ok")) {
+                        weightList = bean.getWeightList();
                     } else {
                         Toast.makeText(MyWeightActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
                     }
@@ -161,18 +172,27 @@ public class MyWeightActivity extends AppCompatActivity {
                 Toast.makeText(MyWeightActivity.this, "파싱실패", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
+            new GraphKgTask().execute(Constants.BASE_URL+"/rest/selectBoardList.do");
         }//end onPostExecute
     }//end class WeightProc
 
 
+
     //몸무게 그래프구현
     public void showChart() {
+//
         ArrayList<Entry> valsComp1 = new ArrayList<Entry>();
 
-        valsComp1.add(new Entry(100.0f, 0));
-        valsComp1.add(new Entry(500.0f, 1));
-        valsComp1.add(new Entry(75.0f, 2));
-        valsComp1.add(new Entry(50.0f, 3));
+        for(int num=0; num<kgList.size(); num++){
+            KgBean.KgBeanSub bean = kgList.get(num);
+            try{
+                if(bean.getD_kg()!=null){
+                    valsComp1.add( new Entry(Integer.parseInt(bean.getD_kg()), num ) );
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
 
         LineDataSet setCom1 = new LineDataSet(valsComp1, "몸무게/날짜");
         setCom1.setAxisDependency(YAxis.AxisDependency.LEFT);
@@ -180,11 +200,19 @@ public class MyWeightActivity extends AppCompatActivity {
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(setCom1);
 
+
         ArrayList<String> xVals = new ArrayList<String>();
-        xVals.add("1.0");
-        xVals.add("1.0");
-        xVals.add("1.0");
-        xVals.add("1.0");
+//        xVals.add("1.0");
+        for(int num=0; num<dateList.size(); num++){
+            DateBean.DateBeanSub bean = dateList.get(num);
+            try{
+                if(bean.getDate()!=null){
+                    xVals.add( bean.getDate() );
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
 
 
         LineData data = new LineData(xVals, dataSets);
@@ -195,7 +223,11 @@ public class MyWeightActivity extends AppCompatActivity {
 
 
 
+    //그래프 데이터 받아오는!
     private class GraphKgTask extends AsyncTask<String, Void, String> {
+
+        private String URL_KG_LIST = Constants.BASE_URL+"/rest/selectBoardList.do";
+
 
         @Override
         protected void onPreExecute() {
@@ -210,14 +242,12 @@ public class MyWeightActivity extends AppCompatActivity {
                 restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
 
                 MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-                //map.add(" " <- 이부분은 memberBean의 이름과 같게 해주어야함!!!!! 꼭!!!!!!!
-                map.add("d_kg", mD_kg);
 
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.ALL.APPLICATION_FORM_URLENCODED);
                 HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(map, headers);
 
-                return restTemplate.postForObject(params[0], request, String.class);
+                return restTemplate.postForObject(URL_KG_LIST, request, String.class);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -229,17 +259,81 @@ public class MyWeightActivity extends AppCompatActivity {
             mProgressBar.setVisibility(View.INVISIBLE);
             Gson gson = new Gson();
             try {
-                JoinBean bean = gson.fromJson(s, JoinBean.class);
-                if (bean != null) {
-                    if (bean.getResult().equals("ok")) {
+                KgBean kgBean = gson.fromJson(s, KgBean.class);
+
+                if (kgBean != null) {
+                    if (kgBean.getResult().equals("ok")) {
+                        kgList = kgBean.getSelectBoardList();
+                        kgAdapter.upKgListTask();
                     } else {
-                        Toast.makeText(MyWeightActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
+                        if( kgBean.getResultMsg().equals("fail") ){
+                            Toast.makeText(MyWeightActivity.this, "몸무게 불러오기 실패", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             } catch (Exception e) {
-                Toast.makeText(MyWeightActivity.this, "파싱실패", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyWeightActivity.this, "몸무게파싱실패", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
+            new GraphDateTask().execute();
+        }//end onPostExecute
+    }//end UpTask
+
+
+    //그래프 날짜 받아오는!
+    private class GraphDateTask extends AsyncTask<String, Void, String> {
+
+        private String URL_DATE_LIST = Constants.BASE_URL+"/rest/dateList.do";
+
+
+        @Override
+        protected void onPreExecute() {
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
+
+                MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+
+
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.ALL.APPLICATION_FORM_URLENCODED);
+                HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(map, headers);
+
+                return restTemplate.postForObject(URL_DATE_LIST, request, String.class);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }   //end doInBackground
+
+        @Override
+        protected void onPostExecute(String s) {
+            mProgressBar.setVisibility(View.INVISIBLE);
+            Gson gson = new Gson();
+            try {
+                DateBean dateBean = gson.fromJson(s, DateBean.class);
+
+                if (dateBean != null) {
+                    if (dateBean.getResult().equals("ok")) {
+                        dateList = dateBean.getDateList();
+                        dateAdapter.upDateListTask();
+                    } else {
+                        if(dateBean.getResultMsg().equals("fail")) {
+                            Toast.makeText(MyWeightActivity.this, "날짜 불러오기 실패", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                Toast.makeText(MyWeightActivity.this, "날짜파싱실패", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+            showChart();
         }//end onPostExecute
     }//end UpTask
 

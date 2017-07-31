@@ -1,16 +1,17 @@
 package com.example.pc.dietapp.Bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by pc on 2017-07-28.
  */
 
-public class DateBean extends CommonBean {
+public class DateBean extends CommonBean implements Serializable{
     private DateBeanSub dateBean;
     private List<DateBeanSub> dateList;
 
-    public class DateBeanSub{
+    public class DateBeanSub implements Serializable{
         private String date;
 
         public String getDate() {
