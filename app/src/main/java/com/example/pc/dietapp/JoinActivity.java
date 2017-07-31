@@ -174,7 +174,7 @@ public class JoinActivity extends AppCompatActivity {
                         Intent i = new Intent(JoinActivity.this, LoginActivity.class);
                         startActivity(i);
                     }else {
-                        Toast.makeText(JoinActivity.this, "아이디가 없음", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(JoinActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }catch (Exception e){
