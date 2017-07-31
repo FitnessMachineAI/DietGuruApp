@@ -12,6 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".LoginActivity">
+        </activity>
+        <activity android:name=".JoinActivity" />
+        <activity android:name=".MemUpActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MyWeightActivity" />
+        <activity android:name=".TabActivity" />
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
