@@ -10,9 +10,14 @@ package com.example.pc.dietapp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -26,6 +31,8 @@ import com.example.pc.dietapp.Bean.WeightBean;
 import com.example.pc.dietapp.Util.Constants;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.MarkerView;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -53,16 +60,21 @@ public class MyWeightActivity extends AppCompatActivity {
     public ProgressBar mProgressBar;
     private LineChart mChart;
     private String mDate, mD_kg;
+    private int mY_kg, mT_kg;
     private List<KgBean.KgBeanSub> kgList = new ArrayList<KgBean.KgBeanSub>();
     private List<DateBean.DateBeanSub> dateList = new ArrayList<DateBean.DateBeanSub>();
     private KgAdapter kgAdapter;
     private DateAdapter dateAdapter;
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_weight);
+
 
         mEdtTodayWeight = (EditText) findViewById(R.id.edtTodayWeight);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -75,6 +87,7 @@ public class MyWeightActivity extends AppCompatActivity {
             }
         });
         findViewById(R.id.btnDeleteWeight).setOnClickListener(btnDeleteClick);
+        findViewById(R.id.btnResult).setOnClickListener(btnResultClick);
 
         kgAdapter = new KgAdapter(this);
         dateAdapter = new DateAdapter(this);
@@ -91,6 +104,7 @@ public class MyWeightActivity extends AppCompatActivity {
 
     }
 
+    //삭제버튼 클릭
     private View.OnClickListener btnDeleteClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -115,6 +129,42 @@ public class MyWeightActivity extends AppCompatActivity {
             dialog.show();
         }
     };//end btn DeleteOkClick
+
+    //결과확인 버튼 클릭
+    private View.OnClickListener btnResultClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MyWeightActivity.this);
+
+            if(mY_kg>=mT_kg) {
+                int kg = mY_kg- mT_kg;
+                builder.setTitle("")
+                        .setMessage("오늘은 어제보다 " + kg + "kg 감량에 성공하였습니다.")
+                        .setCancelable(false)
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        }); //취소버튼 클릭시 설정
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }else{
+                int kg = mT_kg- mY_kg;
+                builder.setTitle("")
+                        .setMessage("오늘은 어제보다 " + kg + "kg 증가하였습니다.")
+                        .setCancelable(false)
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        }); //취소버튼 클릭시 설정
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        }
+    };
 
 
     //오늘의 몸무게관리 클래스
@@ -194,6 +244,15 @@ public class MyWeightActivity extends AppCompatActivity {
             }
         }
 
+        KgBean.KgBeanSub bean = kgList.get(kgList.size()-1);
+        mT_kg = Integer.parseInt(bean.getD_kg());
+        KgBean.KgBeanSub bean2 = kgList.get(kgList.size()-2);
+        mY_kg = Integer.parseInt(bean2.getD_kg());
+
+
+
+
+
         LineDataSet setCom1 = new LineDataSet(valsComp1, "몸무게/날짜");
         setCom1.setAxisDependency(YAxis.AxisDependency.LEFT);
 
@@ -202,17 +261,27 @@ public class MyWeightActivity extends AppCompatActivity {
 
 
         ArrayList<String> xVals = new ArrayList<String>();
-//        xVals.add("1.0");
         for(int num=0; num<dateList.size(); num++){
-            DateBean.DateBeanSub bean = dateList.get(num);
+            DateBean.DateBeanSub bean3 = dateList.get(num);
             try{
-                if(bean.getDate()!=null){
-                    xVals.add( bean.getDate() );
+                if(bean3.getDate()!=null){
+                    xVals.add( bean3.getDate().substring(5,10) );
                 }
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
+
+
+
+
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTextSize(14f);
+        xAxis.setTextColor(Color.BLACK);
+        xAxis.setDrawAxisLine(true);
+        xAxis.setDrawGridLines(false);
+
 
 
         LineData data = new LineData(xVals, dataSets);
