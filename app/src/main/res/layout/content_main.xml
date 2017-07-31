@@ -168,12 +168,16 @@
                 android:text="유형별 운동"
                 android:textColor="@android:color/black" />
 
-            <GridLayout
+            <GridView
+                android:id="@+id/gridViewMain"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="9">
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:horizontalSpacing="8dp"
+                android:numColumns="2"
+                android:verticalSpacing="8dp" />
 
-            </GridLayout>
 
         </LinearLayout>
     </LinearLayout>

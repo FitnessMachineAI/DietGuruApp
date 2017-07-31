@@ -1,16 +1,10 @@
 package com.example.pc.dietapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,106 +25,36 @@ public class MemInfoActivity extends AppCompatActivity {
 
     private TextView mtxtInfoId, mtxtInfoCm, mtxtInfoKg, mtxtInfoHkg, mtxtInfoWord;
     private ProgressBar mProgressBar;
-    private Button mBtnUp;
-  //  private MemAdapter memAdapter;
-    private ListView mView;
+    JoinBean.JoinBeanSub joinBean = new JoinBean.JoinBeanSub();
+    private String URL_MEMBER = Constants.BASE_URL + "/rest/selectMember.do";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mem_info);
 
-        JoinBean.JoinBeanSub joinBean = (JoinBean.JoinBeanSub)getIntent().getSerializableExtra("joinBean");
-
-//        mtxtInfoId = (TextView)findViewById(R.id.txtInfoId);
-//        mtxtInfoCm = (TextView) findViewById(R.id.txtInfoCm);
-//        mtxtInfoKg = (TextView)findViewById(R.id.txtInfoKg);
-//        mtxtInfoHkg = (TextView)findViewById(R.id.txtInfoHKg);
-//        mtxtInfoWord = (TextView)findViewById(R.id.txtInfoWord);
-//
-//        mProgressBar = (ProgressBar)findViewById(R.id.progressBar);
-
-//       txtInfoWord.setText(joinBean.getWord());
-
-//        mtxtInfoCm.setText(joinBean.getCm());
+        mProgressBar = (ProgressBar)findViewById(R.id.progressBar);
 
         findViewById(R.id.btnEdt).setOnClickListener(btnEdtClick);
-    }
+        new MemberTask().execute(URL_MEMBER);
+    }//end OnCreate
 
     private View.OnClickListener btnEdtClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(MemInfoActivity.this, MemUpActivity.class);
+            intent.putExtra( "memberBean",  JoinBean.JoinBeanSub.class);
             startActivity(intent);
         }
     };
 
-    public class MemAdapter extends BaseAdapter {
-
-        private Context context;
-        private JoinBean joinBean;
-
-        public MemAdapter(Context context, JoinBean joinBean){
-            this.context = context;
-            this.joinBean = joinBean;
-        }
-
-        @Override
-        public int getCount() {
-            return 0;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return joinBean.getJoinBean();
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        public void updateMemberListTask() {
-            new MemberTask().execute();
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            //1.
-            LayoutInflater If = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = If.inflate(R.layout.activity_mem_info, null);
-
-            //2.
-            final JoinBean.JoinBeanSub item = joinBean.getJoinBean();
-
-            //3.
-            TextView txtInfoId = (TextView)convertView.findViewById(R.id.txtInfoId);
-            TextView txtInfoCm = (TextView)convertView.findViewById(R.id.txtInfoCm);
-            TextView txtInfoKg = (TextView)convertView.findViewById(R.id.txtInfoKg);
-            TextView txtInfoHKg = (TextView)convertView.findViewById(R.id.txtInfoHKg);
-            TextView txtInfoWord = (TextView)convertView.findViewById(R.id.txtInfoWord);
-
-            txtInfoId.setText(item.getUserId());
-            txtInfoCm.setText(item.getCm());
-            txtInfoKg.setText(item.getKg());
-            txtInfoHKg.setText(item.getH_kg());
-            txtInfoWord.setText(item.getWord());
-
-            return convertView;
-        }
-
-    //회원정보를 가져오는 Task
-    class MemberTask extends AsyncTask<String, Void, String> {
-
-        JoinBean.JoinBeanSub joinBean = (JoinBean.JoinBeanSub)getIntent().getSerializableExtra("joinBean");
-
-
-        private String URL_MEMBER = Constants.BASE_URL + "/rest/selectMember.do?ueserId=" + joinBean.getUserId();
+    //회원관리를 위한 task -> 회원정보수정/탈퇴
+    private class MemberTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
 
-            try {
+            try{
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
 
@@ -138,37 +62,34 @@ public class MemInfoActivity extends AppCompatActivity {
 
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.ALL.APPLICATION_FORM_URLENCODED);
-
                 HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(map, headers);
 
                 return restTemplate.postForObject(URL_MEMBER, request, String.class);
-            } catch (Exception e){
+            }catch (Exception e){
                 e.printStackTrace();
             }
             return null;
-        }
+        }   //end doInBackground
 
         @Override
         protected void onPostExecute(String s) {
+            mProgressBar.setVisibility(View.INVISIBLE);
             Gson gson = new Gson();
-            try {
+            try{
                 JoinBean bean = gson.fromJson(s, JoinBean.class);
-                if (bean != null) {
-                    if (bean.getResult().equals("ok")) {
-                        JoinBean.JoinBeanSub joinBean = (JoinBean.JoinBeanSub)getIntent().getSerializableExtra("joinBean");
-                        //리스트뷰 갱신
-                       // MemAdapter.this.notifyDataSetInvalidated();
-                    } else {
+                if(bean!=null){
+                    if(bean.getResult().equals("ok")){
+                        joinBean = bean.getJoinBean();
+
+                        Toast.makeText(MemInfoActivity.this, "ok이긴 함", Toast.LENGTH_SHORT).show();
+                    }else {
                         Toast.makeText(MemInfoActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
                     }
                 }
-            } catch (Exception e) {
+            }catch (Exception e){
                 Toast.makeText(MemInfoActivity.this, "파싱실패", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
-        }
-    }
-
-    }
-
+        }//end onPostExecute
+    }//end MemberTask
 }

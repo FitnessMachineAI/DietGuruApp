@@ -2,6 +2,7 @@ package com.example.pc.dietapp;
 
 //마이페이지 눌렀을 때 정보안넘어가는 거 수정필요
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,13 +26,13 @@ public class MainActivity extends AppCompatActivity
 
     private Button mbtnPlusKg, mbtnExer;
     private TextView mPresentWeight, mGoalWeight, mtxtToday, mtxtName, mtxtId;
+    private Context context;
 
     //메인화면 등장
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      //  setContentView(R.layout.nav_header_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     //오늘의 몸무게 입력 + 버튼을 눌렀을 때 몸무게 현황으로 이동
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.mypage) {               //마이페이지
             Intent i = new Intent(MainActivity.this, MemInfoActivity.class);
-    //        i.putExtra("joinBean", bean.getJoinBean());            //데이터 연동
+            i.putExtra("joinBean", JoinBean.JoinBeanSub.class);            //데이터 연동
             startActivity(i);
 
         } else if (id == R.id.present_kg) {  //몸무게 현황
