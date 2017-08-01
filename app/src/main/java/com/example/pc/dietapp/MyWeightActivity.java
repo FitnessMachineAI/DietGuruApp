@@ -251,10 +251,13 @@ public class MyWeightActivity extends AppCompatActivity {
             mT_kg = Integer.parseInt(bean.getD_kg());
             KgBean.KgBeanSub bean2 = kgList.get(kgList.size() - 2);
             mY_kg = Integer.parseInt(bean2.getD_kg());
-        }else{
+        }else if(kgList.size() == 1){
             KgBean.KgBeanSub bean = (KgBean.KgBeanSub)getIntent().getSerializableExtra("kgBean");
 
             mT_kg = Integer.parseInt(bean.getD_kg());
+            mY_kg = 0;
+        }else {
+            mT_kg = 0;
             mY_kg = 0;
         }
 
