@@ -12,6 +12,16 @@ public class KgBean extends CommonBean implements Serializable {
     private List<KgBeanSub> selectBoardList;
 
     public class KgBeanSub implements Serializable{
+        private String userId;
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
+
         private String d_kg;
 
         public String getD_kg() {

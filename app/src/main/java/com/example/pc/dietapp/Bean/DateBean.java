@@ -12,6 +12,15 @@ public class DateBean extends CommonBean implements Serializable{
     private List<DateBeanSub> dateList;
 
     public class DateBeanSub implements Serializable{
+        private String userId;
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
         private String date;
 
         public String getDate() {

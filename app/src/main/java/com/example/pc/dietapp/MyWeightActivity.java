@@ -71,9 +71,6 @@ public class MyWeightActivity extends AppCompatActivity {
     private JoinBean join;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,8 +94,7 @@ public class MyWeightActivity extends AppCompatActivity {
         kgAdapter = new KgAdapter(this);
         dateAdapter = new DateAdapter(this);
 
-        new GraphKgTask().execute(Constants.BASE_URL+"/rest/selectBoardList.do");
-
+        new GraphKgTask().execute();
     }
 
     @Override
@@ -198,6 +194,7 @@ public class MyWeightActivity extends AppCompatActivity {
                 MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
                 map.add("date", mDate);
                 map.add("d_kg", mD_kg);
+                map.add("userId", join.getJoinBean().getUserId());
 
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.ALL.APPLICATION_FORM_URLENCODED);
@@ -227,7 +224,7 @@ public class MyWeightActivity extends AppCompatActivity {
                 Toast.makeText(MyWeightActivity.this, "파싱실패", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
-            new GraphKgTask().execute(Constants.BASE_URL+"/rest/selectBoardList.do");
+            new GraphKgTask().execute();
         }//end onPostExecute
     }//end class WeightProc
 
@@ -249,7 +246,6 @@ public class MyWeightActivity extends AppCompatActivity {
             }
         }
 
-
         if(kgList.size() >=2) {
             KgBean.KgBeanSub bean = kgList.get(kgList.size() - 1);
             mT_kg = Integer.parseInt(bean.getD_kg());
@@ -263,15 +259,11 @@ public class MyWeightActivity extends AppCompatActivity {
         }
 
 
-
-
-
         LineDataSet setCom1 = new LineDataSet(valsComp1, "몸무게/날짜");
         setCom1.setAxisDependency(YAxis.AxisDependency.LEFT);
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(setCom1);
-
 
         ArrayList<String> xVals = new ArrayList<String>();
         for(int num=0; num<dateList.size(); num++){
@@ -285,17 +277,12 @@ public class MyWeightActivity extends AppCompatActivity {
             }
         }
 
-
-
-
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextSize(14f);
         xAxis.setTextColor(Color.BLACK);
         xAxis.setDrawAxisLine(true);
         xAxis.setDrawGridLines(false);
-
-
 
         LineData data = new LineData(xVals, dataSets);
 
@@ -324,6 +311,8 @@ public class MyWeightActivity extends AppCompatActivity {
                 restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
 
                 MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+                map.add("userId", join.getJoinBean().getUserId());
+                map.add("d_kg", mD_kg);
 
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.ALL.APPLICATION_FORM_URLENCODED);
@@ -367,6 +356,8 @@ public class MyWeightActivity extends AppCompatActivity {
 
         private String URL_DATE_LIST = Constants.BASE_URL+"/rest/dateList.do";
 
+//        private String URL_DATE_LIST = Constants.BASE_URL+"/rest/date.do";
+
 
         @Override
         protected void onPreExecute() {
@@ -381,6 +372,8 @@ public class MyWeightActivity extends AppCompatActivity {
                 restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
 
                 MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+                map.add("date", mDate);
+                map.add("userId", join.getJoinBean().getUserId());
 
 
                 HttpHeaders headers = new HttpHeaders();

@@ -18,6 +18,8 @@ public class WeightBean extends CommonBean implements Serializable {
         private List<String> selectBoardList;
         private String date;
         private String d_kg;
+        private String userId;
+
 
         public List<String> getDateList() {
             return dateList;
@@ -50,6 +52,15 @@ public class WeightBean extends CommonBean implements Serializable {
         public void setD_kg(String d_kg) {
             this.d_kg = d_kg;
         }
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
+
     }
 
     public WeightBeanSub getWeightBean() {
