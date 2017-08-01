@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.pc.dietapp.Bean.JoinBean;
 import com.example.pc.dietapp.Util.Constants;
+import com.example.pc.dietapp.Util.FileUtil;
 import com.google.gson.Gson;
 
 import org.springframework.http.HttpEntity;
@@ -28,11 +29,14 @@ public class MemUpActivity extends AppCompatActivity {
 
     private EditText mEdtUpId, mEdtUpPw, mEdtUpCm, mEdtUpKg, mEdtUpHkg, mEdtUpWord;
     private ProgressBar mProgressBar;
+    private JoinBean join;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mem_up);
+
+        join = FileUtil.getMemberBean(this);
 
         mEdtUpId = (EditText)findViewById(R.id.edtUpId);
         mEdtUpPw = (EditText)findViewById(R.id.edtUpPw);
@@ -40,6 +44,13 @@ public class MemUpActivity extends AppCompatActivity {
         mEdtUpKg = (EditText)findViewById(R.id.edtUpKg);
         mEdtUpHkg = (EditText)findViewById(R.id.edtUpHkg);
         mEdtUpWord = (EditText)findViewById(R.id.edtUpWord);
+
+        mEdtUpId.setText(join.getJoinBean().getUserId());
+        mEdtUpCm.setText(join.getJoinBean().getCm());
+        mEdtUpKg.setText(join.getJoinBean().getKg());
+        mEdtUpHkg.setText(join.getJoinBean().getH_kg());
+        mEdtUpWord.setText(join.getJoinBean().getWord());
+
 
         mProgressBar = (ProgressBar)findViewById(R.id.progressBar);
 

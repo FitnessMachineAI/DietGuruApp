@@ -4,7 +4,6 @@ package com.example.pc.dietapp;
 //http://www.techobbyist.com/2017/02/15/working-with-shared-preferences-in-android-remember-username-and-password-functionality/
 //스플래쉬화면에서 자동로그인을 체크해서 자동로그인이 구현되어 있는 경우 바로 main으로 넘어가게!
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,8 +13,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -24,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.pc.dietapp.Bean.JoinBean;
 import com.example.pc.dietapp.Util.Constants;
+import com.example.pc.dietapp.Util.FileUtil;
 import com.google.gson.Gson;
 
 import org.springframework.http.HttpEntity;
@@ -32,9 +30,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.util.comparator.BooleanComparator;
 import org.springframework.web.client.RestTemplate;
-
 
 
 public class LoginActivity extends AppCompatActivity implements TextWatcher, CompoundButton.OnCheckedChangeListener{
@@ -42,6 +38,7 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher, Com
     private EditText mEdtUserId, mEdtUserPw;
     private ProgressBar mProgressBar;
     private CheckBox mAutoLogin;
+    private Context mContext;
 
     //자동로그인 구현을 위한
     SharedPreferences.Editor editor;
@@ -176,8 +173,12 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher, Com
                 JoinBean bean = gson.fromJson(s, JoinBean.class);
                 if(bean!=null){
                     if(bean.getResult().equals("ok")) {
+
                         //로그인성공
+                        FileUtil.setJoinBean(LoginActivity.this, bean);
+
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
+//                        Intent i = new Intent(LoginActivity.this, MemUpActivity.class);
                         i.putExtra("joinBean", bean.getJoinBean());
                         startActivity(i);
                         finish();

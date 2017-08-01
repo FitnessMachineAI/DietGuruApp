@@ -26,10 +26,12 @@ import android.widget.Toast;
 import com.example.pc.dietapp.Adapter.DateAdapter;
 import com.example.pc.dietapp.Adapter.KgAdapter;
 import com.example.pc.dietapp.Bean.DateBean;
+import com.example.pc.dietapp.Bean.JoinBean;
 import com.example.pc.dietapp.Bean.KgBean;
 import com.example.pc.dietapp.Bean.WeightBean;
 import com.example.pc.dietapp.Util.Constants;
 
+import com.example.pc.dietapp.Util.FileUtil;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.components.XAxis;
@@ -66,6 +68,8 @@ public class MyWeightActivity extends AppCompatActivity {
     private KgAdapter kgAdapter;
     private DateAdapter dateAdapter;
 
+    private JoinBean join;
+
 
 
 
@@ -75,6 +79,7 @@ public class MyWeightActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_weight);
 
+        join = FileUtil.getMemberBean(this);
 
         mEdtTodayWeight = (EditText) findViewById(R.id.edtTodayWeight);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -244,10 +249,18 @@ public class MyWeightActivity extends AppCompatActivity {
             }
         }
 
-        KgBean.KgBeanSub bean = kgList.get(kgList.size()-1);
-        mT_kg = Integer.parseInt(bean.getD_kg());
-        KgBean.KgBeanSub bean2 = kgList.get(kgList.size()-2);
-        mY_kg = Integer.parseInt(bean2.getD_kg());
+
+        if(kgList.size() >=2) {
+            KgBean.KgBeanSub bean = kgList.get(kgList.size() - 1);
+            mT_kg = Integer.parseInt(bean.getD_kg());
+            KgBean.KgBeanSub bean2 = kgList.get(kgList.size() - 2);
+            mY_kg = Integer.parseInt(bean2.getD_kg());
+        }else{
+            KgBean.KgBeanSub bean = (KgBean.KgBeanSub)getIntent().getSerializableExtra("kgBean");
+
+            mT_kg = Integer.parseInt(bean.getD_kg());
+            mY_kg = 0;
+        }
 
 
 

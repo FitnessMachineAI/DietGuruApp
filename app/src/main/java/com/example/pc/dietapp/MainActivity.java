@@ -21,12 +21,14 @@ import android.widget.Toast;
 import com.example.pc.dietapp.Bean.JoinBean;
 import com.google.gson.Gson;
 
+
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Button mbtnPlusKg, mbtnExer;
     private TextView mPresentWeight, mGoalWeight, mtxtToday, mtxtName, mtxtId;
-    private Context context;
+    private JoinBean joinBean;
 
     //메인화면 등장
     @Override
@@ -36,10 +38,14 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        JoinBean.JoinBeanSub bean = (JoinBean.JoinBeanSub) getIntent().getSerializableExtra("joinBean");
+
         mbtnPlusKg = (Button)findViewById(R.id.btnPlusKg);
         mbtnExer = (Button)findViewById(R.id.btnExer);
         mtxtName = (TextView)findViewById(R.id.txtName);
         mtxtId = (TextView)findViewById(R.id.txtId);
+        mPresentWeight = (TextView)findViewById(R.id.presentWeight);
+        mGoalWeight = (TextView)findViewById(R.id.goalWeight);
 
         findViewById(R.id.btnPlusKg).setOnClickListener(btnPlusKgClick);
         findViewById(R.id.btnExer).setOnClickListener(btnExerClick);
@@ -49,6 +55,9 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        mPresentWeight.setText(bean.getKg());
+        mGoalWeight.setText(bean.getH_kg());
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -60,6 +69,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, MyWeightActivity.class);
+            intent.putExtra("joinBean", joinBean);
             startActivity(intent);
         }
     };
@@ -73,15 +83,6 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
-    //현재 몸무게
-    public class PresentWeightTask extends AsyncTask<String, Void, String> {
-
-
-        @Override
-        protected String doInBackground(String... params) {
-            return null;
-        }
-    }
 
     //메뉴 등장
     @Override
@@ -107,7 +108,6 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.mypage) {               //마이페이지
             Intent i = new Intent(MainActivity.this, MemInfoActivity.class);
-            i.putExtra("joinBean", JoinBean.JoinBeanSub.class);            //데이터 연동
             startActivity(i);
 
         } else if (id == R.id.present_kg) {  //몸무게 현황

@@ -5,8 +5,10 @@ package com.example.pc.dietapp;
 
 import android.content.Intent;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -28,10 +30,13 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+
+
 public class JoinActivity extends AppCompatActivity {
 
     private EditText mEdtJoinId, mEdtJoinPw, mEdtJoinCm, mEdtJoinKg, mEdtJoinHkg, mEdtJoinWord;
     private ProgressBar mProgressBar;
+    private JoinBean joinBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +66,6 @@ public class JoinActivity extends AppCompatActivity {
     };  //end btnIdOkClick
 
 
-
     private class IdCheckTask extends AsyncTask<String, Void, String>{
 
         public static final String URL_JOIN_PROC= Constants.BASE_URL+"rest/idCheckMember.do";
@@ -81,7 +85,6 @@ public class JoinActivity extends AppCompatActivity {
                 MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
                 //map.add(" " <- 이부분은 memberBean의 이름과 같게 해주어야함!!!!! 꼭!!!!!!!
                 map.add("userId", userId);
-
 
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.ALL.APPLICATION_FORM_URLENCODED);
@@ -103,7 +106,6 @@ public class JoinActivity extends AppCompatActivity {
                 if(bean!=null){
                     if(bean.getResultMsg().equals("이미 존재하는 USER_ID 입니다.")){
                         Toast.makeText(JoinActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
-
                     }else {
                         Toast.makeText(JoinActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
                     }
