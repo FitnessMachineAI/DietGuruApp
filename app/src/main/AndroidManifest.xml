@@ -14,8 +14,8 @@
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".JoinActivity" >
             <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
         <activity android:name=".MemUpActivity">
             <meta-data
@@ -40,6 +40,11 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".VideoDetail">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TabActivity" />
         </activity>
 
     </application>

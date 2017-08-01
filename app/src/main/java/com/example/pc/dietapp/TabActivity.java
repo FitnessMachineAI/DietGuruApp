@@ -9,10 +9,12 @@ import com.example.pc.dietapp.Adapter.PagerAdapter;
 
 public class TabActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
+
 
         TabLayout tabLayout=(TabLayout)findViewById(R.id.tab_layout);
 
@@ -22,6 +24,7 @@ public class TabActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("전신"));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
 
         //탭에 아이콘 넣기
         tabLayout.getTabAt(0).setIcon(R.drawable.back);
