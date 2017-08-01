@@ -1,5 +1,6 @@
 package com.example.pc.dietapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -15,22 +16,19 @@ public class TabActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
 
-
         TabLayout tabLayout=(TabLayout)findViewById(R.id.tab_layout);
 
         // 탭 텍스트
         tabLayout.addTab(tabLayout.newTab().setText("상체"));
         tabLayout.addTab(tabLayout.newTab().setText("하체"));
         tabLayout.addTab(tabLayout.newTab().setText("전신"));
-
+        tabLayout.setTabTextColors(Color.BLACK, Color.parseColor("#000000"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
 
         //탭에 아이콘 넣기
         tabLayout.getTabAt(0).setIcon(R.drawable.back);
         tabLayout.getTabAt(1).setIcon(R.drawable.leg);
         tabLayout.getTabAt(2).setIcon(R.drawable.all);
-
 
         final ViewPager viewPager=(ViewPager)findViewById(R.id.pager); //viewPager 찾기
         PagerAdapter adapter=new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount()); //adpater 찾기
