@@ -5,6 +5,7 @@ package com.example.pc.dietapp;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -73,7 +74,7 @@ public class MemUpActivity extends AppCompatActivity {
                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            new UpTask().execute(Constants.BASE_URL+"rest/updateMember.do");
+                            new UpTask().execute();
                         }
                     }) //확인버튼 클릭시 이벤트
                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -98,7 +99,7 @@ public class MemUpActivity extends AppCompatActivity {
                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            new UpTask().execute(Constants.BASE_URL + "rest/deleteMember.do");
+                            new DeleteTask().execute();
                         }
                     }) //확인버튼 클릭시 이벤트
                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -114,8 +115,9 @@ public class MemUpActivity extends AppCompatActivity {
 
 
 
-    //회원관리를 위한 task -> 회원정보수정/탈퇴
+    //회원관리를 위한 task -> 회원정보수정
     private class UpTask extends AsyncTask<String, Void, String> {
+        private String URL_UP_PROC = Constants.BASE_URL+"rest/updateMember.do";
         private String userId, userPw, userCm, userKg, userHkg, userWord;
 
         @Override
@@ -152,7 +154,7 @@ public class MemUpActivity extends AppCompatActivity {
                 HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(map, headers);
 
 
-                return restTemplate.postForObject(params[0], request, String.class);
+                return restTemplate.postForObject(URL_UP_PROC, request, String.class);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -233,7 +235,6 @@ public class MemUpActivity extends AppCompatActivity {
                 JoinBean bean = gson.fromJson(s, JoinBean.class);
                 if(bean!=null){
                     if(bean.getResult().equals("ok")) {
-
                         //로그인성공
                         FileUtil.setJoinBean(MemUpActivity.this, bean);
 
@@ -252,6 +253,74 @@ public class MemUpActivity extends AppCompatActivity {
             }
         }//end onPostExecute
 
+    }
+
+    class DeleteTask extends AsyncTask<String, Void, String>{
+
+        private String URL_DELETE_PROC = Constants.BASE_URL + "rest/deleteMember.do";
+
+        private String userId, userPw, userCm, userKg, userHkg, userWord;
+
+        @Override
+        protected void onPreExecute() {
+            mProgressBar.setVisibility(View.VISIBLE);
+            userId = mEdtUpId.getText().toString();
+            userPw = mEdtUpId.getText().toString();
+            userCm = mEdtUpCm.getText().toString();
+            userKg = mEdtUpKg.getText().toString();
+            userHkg = mEdtUpHkg.getText().toString();
+            userWord = mEdtUpWord.getText().toString();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try{
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
+
+                MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+                map.add("userId",userId);
+                map.add("userPw",userPw);
+                map.add("cm", userCm);
+                map.add("kg",userKg);
+                map.add("h_kg",userHkg);
+                map.add("word",userWord);
+
+
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.ALL.APPLICATION_FORM_URLENCODED);
+                HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(map, headers);
+
+
+                return restTemplate.postForObject(URL_DELETE_PROC, request, String.class);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return null;
+        }   //end doInBackground
+
+        @Override
+        protected void onPostExecute(String s) {
+            mProgressBar.setVisibility(View.INVISIBLE);
+            Gson gson = new Gson();
+            try{
+                JoinBean bean = gson.fromJson(s, JoinBean.class);
+                if(bean!=null){
+                    if(bean.getResult().equals("ok")){
+
+                        Intent intent = new Intent(MemUpActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else {
+                        Toast.makeText(MemUpActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }catch (Exception e){
+                Toast.makeText(MemUpActivity.this, "파싱실패", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }//end onPostExecute
     }
 
 
