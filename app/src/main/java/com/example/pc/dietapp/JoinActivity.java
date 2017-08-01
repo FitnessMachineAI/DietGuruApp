@@ -56,7 +56,6 @@ public class JoinActivity extends AppCompatActivity {
         findViewById(R.id.btnJoinOk).setOnClickListener(btnJoinOkClick);
     }//end onCreate
 
-    //아이디 중복체크 구현해야함
     private View.OnClickListener btnIdOkClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {

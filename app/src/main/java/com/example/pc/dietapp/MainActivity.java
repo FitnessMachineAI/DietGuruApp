@@ -19,8 +19,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pc.dietapp.Bean.JoinBean;
+import com.example.pc.dietapp.Util.Constants;
+import com.example.pc.dietapp.Util.FileUtil;
 import com.google.gson.Gson;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.FormHttpMessageConverter;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
 
 public class MainActivity extends AppCompatActivity
@@ -28,7 +37,7 @@ public class MainActivity extends AppCompatActivity
 
     private Button mbtnPlusKg, mbtnExer;
     private TextView mPresentWeight, mGoalWeight, mtxtToday, mtxtName, mtxtId;
-    private JoinBean joinBean;
+    private JoinBean join;
 
     //메인화면 등장
     @Override
@@ -38,7 +47,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        JoinBean.JoinBeanSub bean = (JoinBean.JoinBeanSub) getIntent().getSerializableExtra("joinBean");
+        join = FileUtil.getMemberBean(this);
+        JoinBean.JoinBeanSub joinBean = (JoinBean.JoinBeanSub)getIntent().getSerializableExtra("joinBean");
 
         mbtnPlusKg = (Button)findViewById(R.id.btnPlusKg);
         mbtnExer = (Button)findViewById(R.id.btnExer);
@@ -46,6 +56,10 @@ public class MainActivity extends AppCompatActivity
         mtxtId = (TextView)findViewById(R.id.txtId);
         mPresentWeight = (TextView)findViewById(R.id.presentWeight);
         mGoalWeight = (TextView)findViewById(R.id.goalWeight);
+
+        mPresentWeight.setText(join.getJoinBean().getKg());
+        mGoalWeight.setText(join.getJoinBean().getH_kg());
+
 
         findViewById(R.id.btnPlusKg).setOnClickListener(btnPlusKgClick);
         findViewById(R.id.btnExer).setOnClickListener(btnExerClick);
@@ -56,20 +70,16 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        mPresentWeight.setText(bean.getKg());
-        mGoalWeight.setText(bean.getH_kg());
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }//end onCreate
 
-    }
 
     //오늘의 몸무게 입력 + 버튼을 눌렀을 때 몸무게 현황으로 이동
     private View.OnClickListener btnPlusKgClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, MyWeightActivity.class);
-            intent.putExtra("joinBean", joinBean);
             startActivity(intent);
         }
     };
@@ -133,7 +143,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
 }

@@ -32,7 +32,7 @@ public class MemInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mem_info);
 
-        JoinBean.JoinBeanSub bean = (JoinBean.JoinBeanSub) getIntent().getSerializableExtra("joinBean");
+//        JoinBean.JoinBeanSub bean = (JoinBean.JoinBeanSub) getIntent().getSerializableExtra("joinBean");
         join = FileUtil.getMemberBean(this);
 
         mtxtInfoId = (TextView)findViewById(R.id.txtInfoId);
@@ -47,6 +47,7 @@ public class MemInfoActivity extends AppCompatActivity {
         mtxtInfoHkg.setText(join.getJoinBean().getH_kg());
         mtxtInfoWord.setText(join.getJoinBean().getWord());
 
+
         findViewById(R.id.btnEdt).setOnClickListener(btnEdtClick);
     }//end OnCreate
 
@@ -57,6 +58,4 @@ public class MemInfoActivity extends AppCompatActivity {
             startActivity(intent);
         }
     };
-
-
 }

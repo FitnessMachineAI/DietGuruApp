@@ -4,6 +4,7 @@ package com.example.pc.dietapp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ public class MemUpActivity extends AppCompatActivity {
         mEdtUpWord = (EditText)findViewById(R.id.edtUpWord);
 
         mEdtUpId.setText(join.getJoinBean().getUserId());
+        mEdtUpPw.setText(join.getJoinBean().getUserPw());
         mEdtUpCm.setText(join.getJoinBean().getCm());
         mEdtUpKg.setText(join.getJoinBean().getKg());
         mEdtUpHkg.setText(join.getJoinBean().getH_kg());
@@ -149,6 +151,7 @@ public class MemUpActivity extends AppCompatActivity {
                 headers.setContentType(MediaType.ALL.APPLICATION_FORM_URLENCODED);
                 HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(map, headers);
 
+
                 return restTemplate.postForObject(params[0], request, String.class);
             }catch (Exception e){
                 e.printStackTrace();
@@ -164,7 +167,7 @@ public class MemUpActivity extends AppCompatActivity {
                 JoinBean bean = gson.fromJson(s, JoinBean.class);
                 if(bean!=null){
                     if(bean.getResult().equals("ok")){
-                        finish();
+                        new LoadTask().execute();
                     }else {
                         Toast.makeText(MemUpActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
                     }
@@ -175,6 +178,81 @@ public class MemUpActivity extends AppCompatActivity {
             }
         }//end onPostExecute
     }//end UpTask
+
+
+    class LoadTask extends AsyncTask<String, Void, String>{
+        private String URL_LOAD_PROC = Constants.BASE_URL+"/rest/selectMember.do";
+        private String userId, userPw, userCm, userKg, userHKg, userWord;
+
+        @Override
+        protected void onPreExecute() {
+            //프로그래스 다이얼로그 표시
+            mProgressBar.setVisibility(View.VISIBLE);
+
+            userId = mEdtUpId.getText().toString();
+            userPw = mEdtUpId.getText().toString();
+            userCm = mEdtUpCm.getText().toString();
+            userKg = mEdtUpKg.getText().toString();
+            userHKg = mEdtUpHkg.getText().toString();
+            userWord = mEdtUpWord.getText().toString();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try{
+                RestTemplate restTemplate = new RestTemplate();
+                //restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
+
+                MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+                map.add("userId",userId);
+                map.add("userPw",userPw);
+                map.add("cm", userCm);
+                map.add("kg",userKg);
+                map.add("h_kg",userHKg);
+                map.add("word",userWord);
+
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.ALL.APPLICATION_FORM_URLENCODED);
+                HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(map, headers);
+
+                return restTemplate.postForObject(URL_LOAD_PROC, request, String.class);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }//end doInBackgroud
+
+        @Override
+        protected void onPostExecute(String s) {
+            mProgressBar.setVisibility(View.INVISIBLE);
+            Gson gson = new Gson();
+            try {
+                JoinBean bean = gson.fromJson(s, JoinBean.class);
+                if(bean!=null){
+                    if(bean.getResult().equals("ok")) {
+
+                        //로그인성공
+                        FileUtil.setJoinBean(MemUpActivity.this, bean);
+
+                        Intent i = new Intent(MemUpActivity.this, MainActivity.class);
+                        i.putExtra("joinBean", bean.getJoinBean());
+                        startActivity(i);
+                        finish();
+                    }else {
+                        //로그인실패
+                        Toast.makeText(MemUpActivity.this, "로그인실패", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }catch (Exception e){
+                Toast.makeText(MemUpActivity.this, "파싱실패", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }//end onPostExecute
+
+    }
 
 
 }

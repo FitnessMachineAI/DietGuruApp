@@ -178,7 +178,6 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher, Com
                         FileUtil.setJoinBean(LoginActivity.this, bean);
 
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
-//                        Intent i = new Intent(LoginActivity.this, MemUpActivity.class);
                         i.putExtra("joinBean", bean.getJoinBean());
                         startActivity(i);
                         finish();

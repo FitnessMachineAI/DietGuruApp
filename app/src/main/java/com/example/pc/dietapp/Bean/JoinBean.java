@@ -94,32 +94,4 @@ public class JoinBean extends CommonBean implements Serializable{
         this.joinList = joinList;
     }
 
-
-
-    public void saveBean(Context mContext, String fileName){
-        try {
-            FileOutputStream fos = mContext.openFileOutput(fileName, Context.MODE_PRIVATE);
-            ObjectOutputStream os = new ObjectOutputStream(fos);
-            os.writeObject(this);
-            fos.close();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public JoinBean loadBean(Context mContext, String fileName){
-        try {
-            FileInputStream fis = mContext.openFileInput(fileName);
-            ObjectInputStream is = new ObjectInputStream(fis);
-            JoinBean beanUtil = (JoinBean) is.readObject();
-            is.close();
-            fis.close();
-            return  beanUtil;
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return  null;
-    }
 }
