@@ -29,6 +29,14 @@ import org.springframework.web.client.RestTemplate;
 
 public class MemUpActivity extends AppCompatActivity {
 
+    //자동로그인 구현을 위한
+    SharedPreferences.Editor editor;
+    SharedPreferences sharedPreferences;
+    private static final String PREF_NAME = "prefs";
+    private static final String KEY_REMEMBER = "remember";
+    private static final String KEY_ID = "userid";
+    private static final String KEY_PASS = "password";
+
     private EditText mEdtUpId, mEdtUpPw, mEdtUpCm, mEdtUpKg, mEdtUpHkg, mEdtUpWord;
     private ProgressBar mProgressBar;
     private JoinBean join;
@@ -37,6 +45,9 @@ public class MemUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mem_up);
+
+        sharedPreferences = getSharedPreferences(PREF_NAME, MemUpActivity.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         join = FileUtil.getMemberBean(this);
 
@@ -308,7 +319,8 @@ public class MemUpActivity extends AppCompatActivity {
                 JoinBean bean = gson.fromJson(s, JoinBean.class);
                 if(bean!=null){
                     if(bean.getResult().equals("ok")){
-
+                        editor.clear();
+                        editor.commit();
                         Intent intent = new Intent(MemUpActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();

@@ -4,6 +4,7 @@ package com.example.pc.dietapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -35,6 +36,16 @@ import org.springframework.web.client.RestTemplate;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    //자동로그인 구현을 위한
+    SharedPreferences.Editor editor;
+    SharedPreferences sharedPreferences;
+    private static final String PREF_NAME = "prefs";
+    private static final String KEY_REMEMBER = "remember";
+    private static final String KEY_ID = "userid";
+    private static final String KEY_PASS = "password";
+
+
+
     private Button mbtnPlusKg, mbtnExer;
     private TextView mPresentWeight, mGoalWeight, mtxtToday, mtxtName, mtxtId;
     private JoinBean join;
@@ -46,6 +57,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+
+        sharedPreferences = getSharedPreferences(PREF_NAME, MemUpActivity.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         join = FileUtil.getMemberBean(this);
         JoinBean.JoinBeanSub joinBean = (JoinBean.JoinBeanSub)getIntent().getSerializableExtra("joinBean");
@@ -130,13 +144,13 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.logout) {     //로그아웃
 
+            editor.clear();
+            editor.commit();
+
             Intent i = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(i);
-            finishAffinity();
-           // ActivityCompat.finishAffinity(MainActivity.this);
             finish();
-            if (bean == null)
-                Toast.makeText(MainActivity.this, "정상적으로 로그아웃되었습니다.", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "정상적으로 로그아웃되었습니다.", Toast.LENGTH_LONG).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
