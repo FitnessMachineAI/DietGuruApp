@@ -2,11 +2,12 @@ package com.example.pc.dietapp;
 
 //마이페이지 눌렀을 때 정보안넘어가는 거 수정필요
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,22 +17,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pc.dietapp.Adapter.GridViewAdapter;
 import com.example.pc.dietapp.Bean.JoinBean;
-import com.example.pc.dietapp.Util.Constants;
+import com.example.pc.dietapp.Bean.VideoDataBean;
 import com.example.pc.dietapp.Util.FileUtil;
 import com.google.gson.Gson;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.FormHttpMessageConverter;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
-
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -51,12 +49,20 @@ public class MainActivity extends AppCompatActivity
     private JoinBean join;
 
     //메인화면 등장
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
+
+        //현재 날짜 표시
+        mtxtToday = (TextView)findViewById(R.id.txtToday);
+        SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
+        String currentDateString = dateFormat.format(new Date());
+        mtxtToday.setText(currentDateString);
+
 
         sharedPreferences = getSharedPreferences(PREF_NAME, MemUpActivity.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -65,6 +71,7 @@ public class MainActivity extends AppCompatActivity
         JoinBean.JoinBeanSub joinBean = (JoinBean.JoinBeanSub)getIntent().getSerializableExtra("joinBean");
 
         mbtnPlusKg = (Button)findViewById(R.id.btnPlusKg);
+
         mbtnExer = (Button)findViewById(R.id.btnExer);
         mtxtName = (TextView)findViewById(R.id.txtName);
         mtxtId = (TextView)findViewById(R.id.txtId);
@@ -77,6 +84,25 @@ public class MainActivity extends AppCompatActivity
 
         findViewById(R.id.btnPlusKg).setOnClickListener(btnPlusKgClick);
         findViewById(R.id.btnExer).setOnClickListener(btnExerClick);
+
+        //
+        GridView gridView = (GridView)findViewById(R.id.gridViewMain);
+
+        VideoDataBean video1 = new VideoDataBean(R.drawable.upper1, "옆구리, 허리 운동", "상체- 허리");
+        video1.setVideoUrl("<div style=\"position:relative;height:0;padding-bottom:56.25%\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/jpTQdM7okkI\" frameborder=\"0\" width=\"640\" height=\"360\" style=\"position:absolute;width:100%;height:100%;left:0\" allowfullscreen></iframe></div>");
+        VideoDataBean video2 = new VideoDataBean(R.drawable.upper2, "뱃살운동", "상체");
+        video2.setVideoUrl("<div style=\"position:relative;height:0;padding-bottom:56.25%\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/62NUKEgaCRE\" frameborder=\"0\" width=\"640\" height=\"360\" style=\"position:absolute;width:100%;height:100%;left:0\" allowfullscreen></iframe></div>");
+        VideoDataBean video3 = new VideoDataBean(R.drawable.upper3, "팔뚝살 운동", "상체- 팔뚝살");
+        video3.setVideoUrl("<div style=\"position:relative;height:0;padding-bottom:56.25%\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/tAk3mMbLtEA\" frameborder=\"0\" width=\"640\" height=\"360\" style=\"position:absolute;width:100%;height:100%;left:0\" allowfullscreen></iframe></div>");
+
+        List<VideoDataBean> list = new ArrayList<VideoDataBean>();
+        list.add(video1);
+        list.add(video2);
+        list.add(video3);
+
+        GridViewAdapter adapter = new GridViewAdapter(this, list);
+        gridView.setAdapter(adapter);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -149,6 +175,7 @@ public class MainActivity extends AppCompatActivity
 
             Intent i = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(i);
+            finishAffinity();
             finish();
             Toast.makeText(MainActivity.this, "정상적으로 로그아웃되었습니다.", Toast.LENGTH_LONG).show();
         }

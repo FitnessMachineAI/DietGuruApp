@@ -165,17 +165,19 @@
                 android:layout_height="0dp"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
+                android:gravity="bottom"
                 android:text="유형별 운동"
                 android:textColor="@android:color/black" />
 
             <GridView
                 android:id="@+id/gridViewMain"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+                android:layout_weight="6"
                 android:horizontalSpacing="8dp"
-                android:numColumns="2"
+                android:numColumns="3"
                 android:verticalSpacing="8dp" />
 
 
