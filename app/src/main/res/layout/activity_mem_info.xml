@@ -18,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:indeterminateTint="#FFb6b9"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,7 +93,9 @@
                                 android:id="@+id/txtInfoId"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
+                                android:layout_marginBottom="1dp"
                                 android:layout_weight="2"
+                                android:background="@drawable/border"
                                 android:editable="false"
                                 android:ems="10"
                                 android:enabled="false"
@@ -106,7 +109,9 @@
                             android:id="@+id/txtInfoCm"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+                            android:layout_marginBottom="1dp"
                             android:layout_weight="1"
+                            android:background="@drawable/border"
                             android:ems="10"
                             android:inputType="number"
                             android:text="Cm"
@@ -117,6 +122,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
+                            android:background="@drawable/border"
                             android:ems="10"
                             android:inputType="number"
                             android:text="Kg"
@@ -125,6 +131,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+                            android:layout_marginBottom="1dp"
                             android:layout_weight="1"
                             android:orientation="horizontal"></LinearLayout>
 
@@ -149,6 +156,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.7"
+                        android:background="#FFf0f5"
                         android:orientation="horizontal">
 
                         <TextView
@@ -164,9 +172,10 @@
                         android:id="@+id/txtInfoHKg"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="1dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="2"
+                        android:background="@drawable/border"
                         android:ems="10"
                         android:inputType="number"
                         android:text="HKg"
@@ -187,6 +196,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
+                        android:background="@drawable/border"
                         android:ems="10"
                         android:inputType="textMultiLine"
                         android:text="Word"
