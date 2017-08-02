@@ -29,6 +29,7 @@ import com.example.pc.dietapp.Bean.DateBean;
 import com.example.pc.dietapp.Bean.JoinBean;
 import com.example.pc.dietapp.Bean.KgBean;
 import com.example.pc.dietapp.Bean.WeightBean;
+import com.example.pc.dietapp.Util.ActivityUtil;
 import com.example.pc.dietapp.Util.Constants;
 
 import com.example.pc.dietapp.Util.FileUtil;
@@ -95,6 +96,8 @@ public class MyWeightActivity extends AppCompatActivity {
         dateAdapter = new DateAdapter(this);
 
         new GraphKgTask().execute();
+
+        ActivityUtil.setActionBarColor(this, R.color.colorAccent);
     }
 
     @Override

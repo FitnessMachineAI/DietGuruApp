@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.pc.dietapp.Adapter.PagerAdapter;
+import com.example.pc.dietapp.Util.ActivityUtil;
 
 public class TabActivity extends AppCompatActivity {
 
@@ -47,6 +48,8 @@ public class TabActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         }); //end tabLayout.setOnTabSelectedListener
+
+        ActivityUtil.setActionBarColor(this, R.color.colorAccent);
 
     } //end onCreate
 

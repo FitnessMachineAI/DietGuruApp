@@ -15,6 +15,35 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#FF4081</item>
+        <item name="colorPrimaryDark">#FF4081</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+
+
+    <!--<style name="AppTheme" parent="AppTheme.Base" />-->
+    <!--&lt;!&ndash; Base application theme.-->
+         <!--Defining this lets values-v21/styles.xml reuse it with changes. &ndash;&gt;-->
+    <!--</style>-->
+    <!--<style name="AppTheme.Base" parent="Theme.AppCompat.NoActionBar">-->
+    <!--&lt;!&ndash; colorPrimary is used, for instance, for the default ActionBar-->
+     <!--(but not Toolbar) background.-->
+      <!--We specify the same color for the toolbar background in -->
+      <!--toolbar.xml.. &ndash;&gt;-->
+    <!--<item name="colorPrimary">@color/color_primary</item>-->
+
+<!--&lt;!&ndash; colorPrimaryDark is used for the status bar (with the-->
+     <!--battery, clock, etc). &ndash;&gt;-->
+    <!--<item name="colorPrimaryDark">@color/color_primary_dark</item>-->
+
+<!--&lt;!&ndash; colorAccent is used as the default value for-->
+     <!--colorControlActivated which is used to tint widgets. &ndash;&gt;-->
+    <!--<item name="colorAccent">@color/color_accent</item>-->
+    <!--</style>-->
 
 </resources>

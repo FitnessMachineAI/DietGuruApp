@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pc.dietapp.Bean.JoinBean;
+import com.example.pc.dietapp.Util.ActivityUtil;
 import com.example.pc.dietapp.Util.Constants;
 import com.example.pc.dietapp.Util.FileUtil;
 import com.google.gson.Gson;
@@ -49,6 +50,8 @@ public class MemInfoActivity extends AppCompatActivity {
 
 
         findViewById(R.id.btnEdt).setOnClickListener(btnEdtClick);
+
+        ActivityUtil.setActionBarColor(this, R.color.colorAccent);
     }//end OnCreate
 
     private View.OnClickListener btnEdtClick = new View.OnClickListener() {

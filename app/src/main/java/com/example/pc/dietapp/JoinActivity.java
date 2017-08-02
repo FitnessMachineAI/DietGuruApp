@@ -4,21 +4,18 @@ package com.example.pc.dietapp;
 //공백으로 회원가입 불가능하게 체크해야함
 
 import android.content.Intent;
-import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.pc.dietapp.Bean.JoinBean;
+import com.example.pc.dietapp.Util.ActivityUtil;
 import com.example.pc.dietapp.Util.Constants;
 import com.google.gson.Gson;
 
@@ -54,6 +51,9 @@ public class JoinActivity extends AppCompatActivity {
 
         findViewById(R.id.btnIdOk).setOnClickListener(btnIdOkClick);
         findViewById(R.id.btnJoinOk).setOnClickListener(btnJoinOkClick);
+
+
+        ActivityUtil.setActionBarColor(this, R.color.colorAccent);
     }//end onCreate
 
     private View.OnClickListener btnIdOkClick = new View.OnClickListener() {

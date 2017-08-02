@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.pc.dietapp.Bean.JoinBean;
+import com.example.pc.dietapp.Util.ActivityUtil;
 import com.example.pc.dietapp.Util.Constants;
 import com.example.pc.dietapp.Util.FileUtil;
 import com.google.gson.Gson;
@@ -70,6 +71,8 @@ public class MemUpActivity extends AppCompatActivity {
 
         findViewById(R.id.btnUpOk).setOnClickListener(btnUpClick);
         findViewById(R.id.btnByeOK).setOnClickListener(btnByeClick);
+
+        ActivityUtil.setActionBarColor(this, R.color.colorAccent);
     }//end OnCreate
 
 

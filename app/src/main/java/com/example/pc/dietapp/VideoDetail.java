@@ -10,6 +10,7 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 
 import com.example.pc.dietapp.Bean.VideoDataBean;
+import com.example.pc.dietapp.Util.ActivityUtil;
 
 public class VideoDetail extends AppCompatActivity {
 
@@ -22,6 +23,8 @@ public class VideoDetail extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
 
         VideoDataBean video = (VideoDataBean)getIntent().getSerializableExtra("video");
+
+        ActivityUtil.setActionBarColor(this, R.color.colorAccent);
 
 
         if(video!=null)
