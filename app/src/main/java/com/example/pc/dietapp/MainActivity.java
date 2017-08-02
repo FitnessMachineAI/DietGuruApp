@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
 
         sharedPreferences = getSharedPreferences(PREF_NAME, MemUpActivity.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-
+//
         join = FileUtil.getMemberBean(this);
         JoinBean.JoinBeanSub joinBean = (JoinBean.JoinBeanSub)getIntent().getSerializableExtra("joinBean");
 
