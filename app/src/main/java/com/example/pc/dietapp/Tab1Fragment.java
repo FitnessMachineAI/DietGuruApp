@@ -29,7 +29,7 @@ public class Tab1Fragment extends Fragment {
 
         //데이터 생성
         VideoDataBean video1 = new VideoDataBean(R.drawable.upper1, "티파니10분 옆구리, 허리 운동", "상체- 허리");
-        video1.setVideoUrl("<div style=\"position:relative;height:0;padding-bottom:56.25%\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/jpTQdM7okkI\" frameborder=\"0\" width=\"640\" height=\"360\" style=\"position:absolute;width:100%;height:100%;left:0\" allowfullscreen></iframe></div>");
+        video1.setVideoUrl("<div style=\"position:relative;height:0;padding-bottom:56.25%\"><iframe width=\"560\" height=\"400\" src=\"https://www.youtube.com/embed/jpTQdM7okkI\" frameborder=\"0\" width=\"640\" height=\"400\" style=\"position:absolute;width:100%;height:100%;left:0\" allowfullscreen></iframe></div>");
         VideoDataBean video2 = new VideoDataBean(R.drawable.upper2, "딥다라인-상체집중운동_메디컬댄스_트위스트 운동, 다이어트 운동, 뱃살운동, 실내기구 upper body", "상체");
         video2.setVideoUrl("<div style=\"position:relative;height:0;padding-bottom:56.25%\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/62NUKEgaCRE\" frameborder=\"0\" width=\"640\" height=\"360\" style=\"position:absolute;width:100%;height:100%;left:0\" allowfullscreen></iframe></div>");
         VideoDataBean video3 = new VideoDataBean(R.drawable.upper3, "천하제일 운동귀찮러의 팔뚝살 쫙쫙빼는 운동", "상체- 팔뚝살");
