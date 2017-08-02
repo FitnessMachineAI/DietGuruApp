@@ -1,8 +1,12 @@
 package com.example.pc.dietapp;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import com.example.pc.dietapp.Bean.VideoDataBean;
@@ -14,7 +18,6 @@ public class VideoDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_detail);
         TextView txtTitle = (TextView)findViewById(R.id.txtTitle);
-        TextView txtPart = (TextView)findViewById(R.id.txtPart);
         WebView webView = (WebView)findViewById(R.id.wbvYoutube);
         webView.getSettings().setJavaScriptEnabled(true);
 
@@ -25,8 +28,31 @@ public class VideoDetail extends AppCompatActivity {
         {
             webView.loadData(video.getVideoUrl(), "text/html", "utf-8");
             txtTitle.setText(video.getTitle());
-            txtPart.setText(video.getPart());
         }
+
+        final Chronometer chronometer = (Chronometer) findViewById(R.id.chronometer);
+        Button buttonStart = (Button) findViewById(R.id.buttonstart);
+        Button buttonStop = (Button) findViewById(R.id.buttonstop);
+        Button buttonReset = (Button) findViewById(R.id.buttonreset);
+
+        buttonStart.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                chronometer.start();
+            }
+        });
+
+        buttonStop.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                chronometer.stop();
+            }
+        });
+
+        buttonReset.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                chronometer.setBase(SystemClock.elapsedRealtime());
+            }
+        });
+
     }
 
 }
