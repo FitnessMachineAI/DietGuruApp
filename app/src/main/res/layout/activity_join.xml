@@ -22,8 +22,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="30dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
+            android:background="@drawable/border"
             android:orientation="vertical">
 
 
@@ -42,6 +44,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_margin="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
@@ -49,8 +52,38 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"></LinearLayout>
+                            android:layout_weight="1.2"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/imageView4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/logo3" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_weight="0.8"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView21"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_gravity="bottom"
+                                android:layout_marginBottom="3dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/line"
+                                android:gravity="fill_vertical"
+                                android:text=" 회원가입"
+                                android:textSize="18sp" />
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -62,8 +95,9 @@
                                 android:id="@+id/textView5"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:text="TextView" />
+                                android:layout_weight="1.5"
+                                android:gravity="center"
+                                android:text="아이디" />
 
                             <EditText
                                 android:id="@+id/edtJoinId"
@@ -74,17 +108,17 @@
                                 android:ems="10"
                                 android:hint="Id를 입력해주세요"
                                 android:inputType="textPersonName"
-                                android:textSize="14sp"
-                                android:textCursorDrawable="@drawable/cursor"/>
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:textSize="14sp" />
 
                             <Button
                                 android:id="@+id/btnIdOk"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/btnimg"
-                                android:text="중복 확인" />
+                                android:text="중복확인"
+                                android:textSize="11sp"
+                                android:background="@drawable/btnimg" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -98,13 +132,14 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:gravity="center"
+                                android:text="비밀번호" />
 
                             <EditText
                                 android:id="@+id/edtJoinPw"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="3"
+                                android:layout_weight="2"
                                 android:backgroundTint="#FF4081"
                                 android:ems="10"
                                 android:hint="Pw를 입력해주세요"
@@ -124,13 +159,14 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:gravity="center"
+                                android:text="현재나의키" />
 
                             <EditText
                                 android:id="@+id/edtJoinCm"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="3"
+                                android:layout_weight="2"
                                 android:backgroundTint="#FF4081"
                                 android:ems="10"
                                 android:hint="키를 입력해주세요"
@@ -150,13 +186,14 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:gravity="center"
+                                android:text="현재몸무게" />
 
                             <EditText
                                 android:id="@+id/edtJoinKg"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="3"
+                                android:layout_weight="2"
                                 android:backgroundTint="#FF4081"
                                 android:ems="10"
                                 android:hint="몸무게를 입력해주세요"
@@ -169,12 +206,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal"></LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <TextView
@@ -182,15 +213,14 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:gravity="center"
+                                android:text="목표몸무게" />
 
                             <EditText
                                 android:id="@+id/edtJoinHkg"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_weight="3"
+                                android:layout_weight="2"
                                 android:backgroundTint="#FF4081"
                                 android:hint="몸무게를 입력해주세요"
                                 android:inputType="number"
@@ -210,15 +240,14 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:gravity="center"
+                                android:text="다짐" />
 
                             <EditText
                                 android:id="@+id/edtJoinWord"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_weight="3"
+                                android:layout_weight="2"
                                 android:backgroundTint="#FF4081"
                                 android:ems="10"
                                 android:hint="다짐을 입력해주세요"
@@ -230,7 +259,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_weight="0.2"
                             android:orientation="horizontal"></LinearLayout>
 
                     </LinearLayout>
@@ -243,9 +272,10 @@
                 android:background="@drawable/btnimg"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:text="회원가입" />
 
         </LinearLayout>

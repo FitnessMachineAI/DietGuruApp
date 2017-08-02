@@ -179,6 +179,7 @@ public class JoinActivity extends AppCompatActivity {
                     if(bean.getResult().equals("ok")){
                         Intent i = new Intent(JoinActivity.this, LoginActivity.class);
                         startActivity(i);
+                        finish();
                     }else {
                         Toast.makeText(JoinActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
                     }

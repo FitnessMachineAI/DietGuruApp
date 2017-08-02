@@ -266,7 +266,7 @@ public class MyWeightActivity extends AppCompatActivity {
         }
 
 
-        LineDataSet setCom1 = new LineDataSet(valsComp1, "몸무게/날짜");
+        LineDataSet setCom1 = new LineDataSet(valsComp1, "몸무게");
         setCom1.setAxisDependency(YAxis.AxisDependency.LEFT);
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
@@ -286,7 +286,7 @@ public class MyWeightActivity extends AppCompatActivity {
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextSize(14f);
+        xAxis.setTextSize(12f);
         xAxis.setTextColor(Color.BLACK);
         xAxis.setDrawAxisLine(true);
         xAxis.setDrawGridLines(false);

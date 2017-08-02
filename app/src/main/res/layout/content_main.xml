@@ -56,7 +56,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:gravity="bottom"
-                    android:text="현재 몸무게" />
+                    android:text="시작 몸무게" />
 
                 <TextView
                     android:id="@+id/textView3"
