@@ -65,6 +65,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="20dp"
                         android:layout_weight="3"
+                        android:backgroundTint="#FF4081"
                         android:ems="10"
                         android:inputType="text" />
 
@@ -92,6 +93,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_weight="3"
 
+                        android:backgroundTint="#FF4081"
                         android:ems="10"
                         android:inputType="textPassword" />
 
@@ -129,7 +131,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="아이디,비밀번호 저장" />
+                    android:text="아이디,비밀번호 저장"
+                    app:buttonTint="#FF4081" />
             </LinearLayout>
         </LinearLayout>
 
