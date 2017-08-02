@@ -1,27 +1,14 @@
 package com.example.pc.dietapp;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.pc.dietapp.Bean.JoinBean;
 import com.example.pc.dietapp.Util.ActivityUtil;
-import com.example.pc.dietapp.Util.Constants;
 import com.example.pc.dietapp.Util.FileUtil;
-import com.google.gson.Gson;
-
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.FormHttpMessageConverter;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 
 public class MemInfoActivity extends AppCompatActivity {
 
@@ -43,9 +30,9 @@ public class MemInfoActivity extends AppCompatActivity {
         mtxtInfoWord = (TextView)findViewById(R.id.txtInfoWord);
 
         mtxtInfoId.setText(join.getJoinBean().getUserId());
-        mtxtInfoCm.setText(join.getJoinBean().getCm());
-        mtxtInfoKg.setText(join.getJoinBean().getKg());
-        mtxtInfoHkg.setText(join.getJoinBean().getH_kg());
+        mtxtInfoCm.setText(join.getJoinBean().getCm() + "\tcm");
+        mtxtInfoKg.setText(join.getJoinBean().getKg() + "\tKg");
+        mtxtInfoHkg.setText(join.getJoinBean().getH_kg() + "\tKg");
         mtxtInfoWord.setText(join.getJoinBean().getWord());
 
 
