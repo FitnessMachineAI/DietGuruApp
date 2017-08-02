@@ -177,7 +177,7 @@
                 android:layout_centerVertical="true"
                 android:layout_weight="6"
                 android:horizontalSpacing="8dp"
-                android:numColumns="3"
+                android:numColumns="2"
                 android:verticalSpacing="8dp" />
 
 
