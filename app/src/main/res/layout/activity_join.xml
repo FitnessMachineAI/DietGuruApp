@@ -74,16 +74,17 @@
                                 android:ems="10"
                                 android:hint="Id를 입력해주세요"
                                 android:inputType="textPersonName"
-                                android:textCursorDrawable="@drawable/cursor"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                android:textCursorDrawable="@drawable/cursor"/>
 
                             <Button
                                 android:id="@+id/btnIdOk"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
+                                android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:text="Button" />
-
+                                android:background="@drawable/btnimg"
+                                android:text="중복 확인" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -238,6 +239,7 @@
 
             <Button
                 android:id="@+id/btnJoinOk"
+                android:background="@drawable/btnimg"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginLeft="10dp"

@@ -7,17 +7,17 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="200dp"
-        android:layout_height="220dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:orientation="vertical"
-        android:weightSum="2.5">
+        android:weightSum="3">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="2"
             android:elevation="1dp"
             android:orientation="vertical">
 
@@ -32,7 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <TextView
                 android:id="@+id/txtTitle"
@@ -40,9 +41,10 @@
                 android:layout_height="match_parent"
                 android:ellipsize="end"
                 android:gravity="top|center"
-                android:lines="3"
+                android:lines="2"
                 android:text="동영상 제목"
-                android:textSize="20sp" />
+                android:textSize="14sp"
+                android:layout_weight="0.25" />
 
         </LinearLayout>
 
