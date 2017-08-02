@@ -175,7 +175,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="목표"
-                            android:background="#FFf0f5"/>
+                            android:background="#FFb6b9"/>
                     </LinearLayout>
 
                     <EditText
