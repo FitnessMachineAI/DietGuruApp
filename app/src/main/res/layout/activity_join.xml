@@ -36,35 +36,6 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.7"
-                    android:orientation="vertical"
-                    android:weightSum="6">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"></LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/ImgJoin"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1.5"
-                        app:srcCompat="@mipmap/ic_launcher" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="3.5"
-                        android:orientation="horizontal"></LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:orientation="vertical">
 
@@ -87,17 +58,24 @@
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
+                            <TextView
+                                android:id="@+id/textView5"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="TextView" />
+
                             <EditText
                                 android:id="@+id/edtJoinId"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
+                                android:backgroundTint="#FF4081"
                                 android:ems="10"
                                 android:hint="Id를 입력해주세요"
-                                android:backgroundTint="#FF4081"
                                 android:inputType="textPersonName"
-                                android:textSize="14sp"
-                                android:textCursorDrawable="@drawable/cursor"/>
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:textSize="14sp" />
 
                             <Button
                                 android:id="@+id/btnIdOk"
@@ -105,43 +83,147 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="Button" />
+
                         </LinearLayout>
 
-                        <EditText
-                            android:id="@+id/edtJoinPw"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:ems="10"
-                            android:hint="Pw를 입력해주세요"
-                            android:inputType="textPassword"
-                            android:backgroundTint="#FF4081"
-                            android:textSize="14sp"
-                            android:textCursorDrawable="@drawable/cursor"/>
+                            android:orientation="horizontal">
 
-                        <EditText
-                            android:id="@+id/edtJoinCm"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:backgroundTint="#FF4081"
-                            android:hint="키를 입력해주세요"
-                            android:inputType="number"
-                            android:textSize="14sp"
-                            android:textCursorDrawable="@drawable/cursor"/>
+                            <TextView
+                                android:id="@+id/textView7"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="TextView" />
 
-                        <EditText
-                            android:id="@+id/edtJoinKg"
+                            <EditText
+                                android:id="@+id/edtJoinPw"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:backgroundTint="#FF4081"
+                                android:ems="10"
+                                android:hint="Pw를 입력해주세요"
+                                android:inputType="textPassword"
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:backgroundTint="#FF4081"
-                            android:ems="10"
-                            android:hint="몸무게를 입력해주세요"
-                            android:inputType="number"
-                            android:textSize="14sp"
-                            android:textCursorDrawable="@drawable/cursor"/>
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView9"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="TextView" />
+
+                            <EditText
+                                android:id="@+id/edtJoinCm"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:backgroundTint="#FF4081"
+                                android:ems="10"
+                                android:hint="키를 입력해주세요"
+                                android:inputType="number"
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView10"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="TextView" />
+
+                            <EditText
+                                android:id="@+id/edtJoinKg"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:backgroundTint="#FF4081"
+                                android:ems="10"
+                                android:hint="몸무게를 입력해주세요"
+                                android:inputType="number"
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView11"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="TextView" />
+
+                            <EditText
+                                android:id="@+id/edtJoinHkg"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_weight="3"
+                                android:backgroundTint="#FF4081"
+                                android:hint="몸무게를 입력해주세요"
+                                android:inputType="number"
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView12"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="TextView" />
+
+                            <EditText
+                                android:id="@+id/edtJoinWord"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_weight="3"
+                                android:backgroundTint="#FF4081"
+                                android:ems="10"
+                                android:hint="다짐을 입력해주세요"
+                                android:inputType="textMultiLine"
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:textSize="14sp" />
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -151,72 +233,6 @@
 
                     </LinearLayout>
 
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.7"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textView"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:background="#FFb6b9"
-                            android:text="목표" />
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/edtJoinHkg"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="2"
-                        android:ems="10"
-                        android:hint="몸무게를 입력해주세요"
-                        android:backgroundTint="#FF4081"
-                        android:inputType="number"
-                        android:textSize="14sp"
-                        android:textCursorDrawable="@drawable/cursor"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/edtJoinWord"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:hint="다짐을 입력해주세요"
-                        android:backgroundTint="#FF4081"
-                        android:inputType="textMultiLine"
-                        android:textSize="14sp"
-                        android:textCursorDrawable="@drawable/cursor"/>
                 </LinearLayout>
             </LinearLayout>
 

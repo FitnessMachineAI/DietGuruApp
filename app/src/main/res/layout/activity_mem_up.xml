@@ -36,35 +36,6 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.7"
-                    android:orientation="vertical"
-                    android:weightSum="6">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"></LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/ImgJoin"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1.5"
-                        app:srcCompat="@mipmap/ic_launcher" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="3.5"
-                        android:orientation="horizontal"></LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:orientation="vertical">
 
@@ -79,13 +50,22 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal"></LinearLayout>
+                            android:orientation="horizontal">
+
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView13"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="ID" />
 
                             <EditText
                                 android:id="@+id/edtUpId"
@@ -98,46 +78,88 @@
                                 android:enabled="false"
                                 android:hint="Id를 입력해주세요"
                                 android:inputType="textPersonName"
-                                android:textSize="14sp"
-                                android:textCursorDrawable="@drawable/cursor"/>
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:textSize="14sp" />
 
                         </LinearLayout>
 
-                        <EditText
-                            android:id="@+id/edtUpPw"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:backgroundTint="#FF4081"
-                            android:ems="10"
-                            android:hint="Pw를 입력해주세요"
-                            android:inputType="textPassword"
-                            android:textSize="14sp"
-                            android:textCursorDrawable="@drawable/cursor"/>
+                            android:orientation="horizontal">
 
-                        <EditText
-                            android:id="@+id/edtUpCm"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:backgroundTint="#FF4081"
-                            android:ems="10"
-                            android:hint="키를 입력해주세요"
-                            android:inputType="number"
-                            android:textSize="14sp"
-                            android:textCursorDrawable="@drawable/cursor"/>
+                            <TextView
+                                android:id="@+id/textView14"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="PW" />
 
-                        <EditText
-                            android:id="@+id/edtUpKg"
+                            <EditText
+                                android:id="@+id/edtUpPw"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:backgroundTint="#FF4081"
+                                android:ems="10"
+                                android:hint="Pw를 입력해주세요"
+                                android:inputType="textPassword"
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:backgroundTint="#FF4081"
-                            android:ems="10"
-                            android:hint="몸무게를 입력해주세요"
-                            android:inputType="number"
-                            android:textSize="14sp"
-                            android:textCursorDrawable="@drawable/cursor"/>
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView15"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="TextView" />
+
+                            <EditText
+                                android:id="@+id/edtUpCm"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:backgroundTint="#FF4081"
+                                android:ems="10"
+                                android:hint="키를 입력해주세요"
+                                android:inputType="number"
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="TextView" />
+
+                            <EditText
+                                android:id="@+id/edtUpKg"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:backgroundTint="#FF4081"
+                                android:ems="10"
+                                android:hint="몸무게를 입력해주세요"
+                                android:inputType="number"
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:textSize="14sp" />
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -145,74 +167,67 @@
                             android:layout_weight="1"
                             android:orientation="horizontal"></LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView17"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="TextView" />
+
+                            <EditText
+                                android:id="@+id/edtUpWord"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:backgroundTint="#FF4081"
+                                android:ems="10"
+                                android:hint="다짐을 입력해주세요"
+                                android:inputType="textMultiLine"
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView18"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="TextView" />
+
+                            <EditText
+                                android:id="@+id/edtUpHkg"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:backgroundTint="#FF4081"
+                                android:ems="10"
+                                android:hint="몸무게를 입력해주세요"
+                                android:inputType="number"
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
                     </LinearLayout>
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.7"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textView"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="목표"
-                            android:background="#FFb6b9"/>
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/edtUpHkg"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="2"
-                        android:backgroundTint="#FF4081"
-                        android:ems="10"
-                        android:hint="몸무게를 입력해주세요"
-                        android:inputType="number"
-                        android:textSize="14sp"
-                        android:textCursorDrawable="@drawable/cursor"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/edtUpWord"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="#FF4081"
-                        android:ems="10"
-                        android:hint="다짐을 입력해주세요"
-                        android:inputType="textMultiLine"
-                        android:textSize="14sp"
-                        android:textCursorDrawable="@drawable/cursor"/>
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:orientation="horizontal"></LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
@@ -224,7 +239,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_weight="1"
+                android:layout_weight="0.7"
                 android:background="@drawable/btnimg"
                 android:text="정보수정완료" />
 
@@ -235,7 +250,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:layout_weight="1"
+                android:layout_weight="0.7"
                 android:background="@drawable/btnimg"
                 android:text="회원탈퇴" />
 
