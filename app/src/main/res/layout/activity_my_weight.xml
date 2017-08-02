@@ -52,7 +52,8 @@
                     android:gravity="center"
                     android:hint="현재 몸무게를 입력하세요"
                     android:inputType="number"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textCursorDrawable="@drawable/cursor"/>
 
                 <ImageButton
                     android:id="@+id/btnAddWeight"

@@ -67,7 +67,8 @@
                         android:layout_weight="3"
                         android:backgroundTint="#FF4081"
                         android:ems="10"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:textCursorDrawable="@drawable/cursor"/>
 
                 </LinearLayout>
 
@@ -92,7 +93,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="20dp"
                         android:layout_weight="3"
-
+                        android:textCursorDrawable="@drawable/cursor"
                         android:backgroundTint="#FF4081"
                         android:ems="10"
                         android:inputType="textPassword" />

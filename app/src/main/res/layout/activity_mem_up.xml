@@ -98,7 +98,8 @@
                                 android:enabled="false"
                                 android:hint="Id를 입력해주세요"
                                 android:inputType="textPersonName"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                android:textCursorDrawable="@drawable/cursor"/>
 
                         </LinearLayout>
 
@@ -111,7 +112,8 @@
                             android:ems="10"
                             android:hint="Pw를 입력해주세요"
                             android:inputType="textPassword"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:textCursorDrawable="@drawable/cursor"/>
 
                         <EditText
                             android:id="@+id/edtUpCm"
@@ -122,7 +124,8 @@
                             android:ems="10"
                             android:hint="키를 입력해주세요"
                             android:inputType="number"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:textCursorDrawable="@drawable/cursor"/>
 
                         <EditText
                             android:id="@+id/edtUpKg"
@@ -133,7 +136,8 @@
                             android:ems="10"
                             android:hint="몸무게를 입력해주세요"
                             android:inputType="number"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:textCursorDrawable="@drawable/cursor"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -184,7 +188,8 @@
                         android:ems="10"
                         android:hint="몸무게를 입력해주세요"
                         android:inputType="number"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textCursorDrawable="@drawable/cursor"/>
 
                 </LinearLayout>
 
@@ -205,7 +210,8 @@
                         android:ems="10"
                         android:hint="다짐을 입력해주세요"
                         android:inputType="textMultiLine"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textCursorDrawable="@drawable/cursor"/>
 
                 </LinearLayout>
             </LinearLayout>
