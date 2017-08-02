@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity
 
         mbtnExer = (Button)findViewById(R.id.btnExer);
         mtxtName = (TextView)findViewById(R.id.txtName);
-        mtxtId = (TextView)findViewById(R.id.txtId);
         mPresentWeight = (TextView)findViewById(R.id.presentWeight);
         mGoalWeight = (TextView)findViewById(R.id.goalWeight);
 
