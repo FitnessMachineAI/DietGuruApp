@@ -174,7 +174,8 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="목표" />
+                            android:text="목표"
+                            android:background="#FFf0f5"/>
                     </LinearLayout>
 
                     <EditText

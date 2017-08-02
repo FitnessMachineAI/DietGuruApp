@@ -175,6 +175,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
+                            android:background="#FFf0f5"
                             android:text="목표" />
                     </LinearLayout>
 
