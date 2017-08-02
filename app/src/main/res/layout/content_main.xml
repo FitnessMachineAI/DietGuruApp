@@ -37,7 +37,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:text="2017.07.23"
-                    android:textColor="@android:color/black"
+                    android:textColor="#491f21"
                     android:textSize="20sp" />
 
             </LinearLayout>

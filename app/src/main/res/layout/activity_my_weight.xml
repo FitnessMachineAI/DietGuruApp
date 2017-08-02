@@ -17,8 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="invisible"
-            android:indeterminateTint="#FFb6b9"/>
+            android:indeterminateTint="#FFb6b9"
+            android:visibility="invisible" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,8 +52,8 @@
                     android:gravity="center"
                     android:hint="현재 몸무게를 입력하세요"
                     android:inputType="number"
-                    android:textSize="14sp"
-                    android:textCursorDrawable="@drawable/cursor"/>
+                    android:textCursorDrawable="@drawable/cursor"
+                    android:textSize="14sp" />
 
                 <ImageButton
                     android:id="@+id/btnAddWeight"
