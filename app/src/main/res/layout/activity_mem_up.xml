@@ -221,9 +221,11 @@
                 android:id="@+id/btnUpOk"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:background="@drawable/btnimg"
                 android:text="정보수정완료" />
 
             <Button
@@ -232,7 +234,9 @@
                 android:layout_height="0dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
+                android:background="@drawable/btnimg"
                 android:text="회원탈퇴" />
 
         </LinearLayout>

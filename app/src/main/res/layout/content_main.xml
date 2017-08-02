@@ -18,12 +18,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.3"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <TextView
@@ -32,23 +33,40 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="top|center"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="2017.07.23"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="0dp"
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_gravity="top|center"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:text="오늘의 운동 현황"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:gravity="bottom"
+                    android:text="현재 몸무게" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:text="목표 몸무게" />
             </LinearLayout>
 
         </LinearLayout>
@@ -56,7 +74,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2.5"
             android:orientation="vertical">
 
             <LinearLayout
@@ -68,24 +86,28 @@
                     android:id="@+id/presentWeight"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:background="@android:color/darker_gray"
+                    android:background="#fceff0"
                     android:gravity="center"
                     android:text="78kg"
-                    android:textColor="@android:color/black"
+                    android:textColor="#fd9a9e"
                     android:textSize="48sp" />
 
                 <TextView
                     android:id="@+id/goalWeight"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:background="@android:color/darker_gray"
+                    android:background="#fceff0"
                     android:gravity="center"
                     android:text="50kg"
-                    android:textColor="@android:color/black"
+                    android:textColor="#fd9a9e"
                     android:textSize="48sp" />
             </LinearLayout>
         </LinearLayout>
@@ -99,6 +121,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -116,8 +139,11 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="0.5"
+                    android:background="#ffffff"
                     android:text="+"
-                    android:textSize="14sp" />
+                    android:textColor="#fd9a9e"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -144,12 +170,14 @@
             <Button
                 android:id="@+id/btnExer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="5dp"
+                android:background="@drawable/btnimg"
                 android:text="운동하기"
+                android:textColor="#000000"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -166,7 +194,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:gravity="bottom"
-                android:text="유형별 운동"
+                android:text="유형별 추천 운동"
                 android:textColor="@android:color/black" />
 
             <GridView

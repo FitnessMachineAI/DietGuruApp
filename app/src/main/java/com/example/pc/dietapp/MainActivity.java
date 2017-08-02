@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity
         mPresentWeight = (TextView)findViewById(R.id.presentWeight);
         mGoalWeight = (TextView)findViewById(R.id.goalWeight);
 
-        mPresentWeight.setText(join.getJoinBean().getKg());
-        mGoalWeight.setText(join.getJoinBean().getH_kg());
+        mPresentWeight.setText(join.getJoinBean().getKg() + "Kg");
+        mGoalWeight.setText(join.getJoinBean().getH_kg() + "Kg");
 
 
         findViewById(R.id.btnPlusKg).setOnClickListener(btnPlusKgClick);
@@ -89,10 +89,10 @@ public class MainActivity extends AppCompatActivity
 
         VideoDataBean video1 = new VideoDataBean(R.drawable.upper1, "옆구리, 허리 운동", "상체- 허리");
         video1.setVideoUrl("<div style=\"position:relative;height:0;padding-bottom:56.25%\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/jpTQdM7okkI\" frameborder=\"0\" width=\"640\" height=\"360\" style=\"position:absolute;width:100%;height:100%;left:0\" allowfullscreen></iframe></div>");
-        VideoDataBean video2 = new VideoDataBean(R.drawable.upper2, "뱃살운동", "상체");
-        video2.setVideoUrl("<div style=\"position:relative;height:0;padding-bottom:56.25%\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/62NUKEgaCRE\" frameborder=\"0\" width=\"640\" height=\"360\" style=\"position:absolute;width:100%;height:100%;left:0\" allowfullscreen></iframe></div>");
-        VideoDataBean video3 = new VideoDataBean(R.drawable.upper3, "팔뚝살 운동", "상체- 팔뚝살");
-        video3.setVideoUrl("<div style=\"position:relative;height:0;padding-bottom:56.25%\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/tAk3mMbLtEA\" frameborder=\"0\" width=\"640\" height=\"360\" style=\"position:absolute;width:100%;height:100%;left:0\" allowfullscreen></iframe></div>");
+        VideoDataBean video2 = new VideoDataBean(R.drawable.lower1, "다리살 허벅지살 빼는 최고의 운동 BEST5 (하체살 빼는 하체비만 다이어트 운동)", "하체- 허벅지, 다리");
+        video2.setVideoUrl("<div style=\"position:relative;height:0;padding-bottom:56.25%\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/59ylvWlszgg\" frameborder=\"0\" width=\"640\" height=\"360\" style=\"position:absolute;width:100%;height:100%;left:0\" allowfullscreen></iframe></div>");
+        VideoDataBean video3 = new VideoDataBean(R.drawable.all1, "상체비만, 하체비만순환 루틴 홈트레이닝 다이어트운동", "전신");
+        video3.setVideoUrl("<div style=\"position:relative;height:0;padding-bottom:56.25%\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/sL0DCxjxppU\" frameborder=\"0\" width=\"640\" height=\"360\" style=\"position:absolute;width:100%;height:100%;left:0\" allowfullscreen></iframe></div>");
 
         List<VideoDataBean> list = new ArrayList<VideoDataBean>();
         list.add(video1);
