@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity
         public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, MyWeightActivity.class);
             startActivity(intent);
-            finish();
+
         }
     };
 
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity
         public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, TabActivity.class);
             startActivity(intent);
-            finish();
+
         }
     };
 
@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.mypage) {               //마이페이지
             Intent i = new Intent(MainActivity.this, MemInfoActivity.class);
             startActivity(i);
+            finish();
 
         } else if (id == R.id.present_kg) {  //몸무게 현황
             Intent i = new Intent(MainActivity.this, MyWeightActivity.class);

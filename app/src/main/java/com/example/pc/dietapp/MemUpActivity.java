@@ -324,8 +324,8 @@ public class MemUpActivity extends AppCompatActivity {
                     if(bean.getResult().equals("ok")){
                         editor.clear();
                         editor.commit();
-                        Intent intent = new Intent(MemUpActivity.this, LoginActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(MemUpActivity.this, LoginActivity.class);
+//                        startActivity(intent);
                         finish();
                     }else {
                         Toast.makeText(MemUpActivity.this, bean.getResultMsg(), Toast.LENGTH_SHORT).show();
