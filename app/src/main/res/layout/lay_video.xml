@@ -43,7 +43,7 @@
                 android:gravity="top|center"
                 android:lines="2"
                 android:text="동영상 제목"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:layout_weight="0.25" />
 
         </LinearLayout>
