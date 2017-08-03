@@ -40,6 +40,7 @@ public class VideoDetail extends AppCompatActivity {
 
         buttonStart.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
+                chronometer.setBase(SystemClock.elapsedRealtime());
                 chronometer.start();
             }
         });
@@ -49,13 +50,6 @@ public class VideoDetail extends AppCompatActivity {
                 chronometer.stop();
             }
         });
-
-        buttonReset.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                chronometer.setBase(SystemClock.elapsedRealtime());
-            }
-        });
-
     }
 
 }
