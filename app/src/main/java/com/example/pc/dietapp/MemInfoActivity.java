@@ -46,6 +46,7 @@ public class MemInfoActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = new Intent(MemInfoActivity.this, MemUpActivity.class);
             startActivity(intent);
+            finish();
         }
     };
 }

@@ -36,7 +36,7 @@ public class VideoDetail extends AppCompatActivity {
         final Chronometer chronometer = (Chronometer) findViewById(R.id.chronometer);
         Button buttonStart = (Button) findViewById(R.id.buttonstart);
         Button buttonStop = (Button) findViewById(R.id.buttonstop);
-        Button buttonReset = (Button) findViewById(R.id.buttonreset);
+
 
         buttonStart.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
